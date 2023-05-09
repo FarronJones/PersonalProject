@@ -1,8 +1,10 @@
+//imports
 import java.util.Scanner;
 import java.util.Random;
 import java.text.DecimalFormat;
+//class
 public class Main {
-
+	//main
 	public static void main(String[] args) {
 				//Method = a block of code that is executed whenever it is called upon
 				//arguments to pass values in method
@@ -116,7 +118,7 @@ public class Main {
 				//prints out the dicegame rolls
 				System.out.println(dicegame1);
 				System.out.println(dicegame2);
-				//if at least two of the dice rolled the same value, you don't have to pay
+				//if at least two of the dice rolled the same value, you don't have to pay, you won the game, and earnings is shown.
 					if(dicegame1==dicegame2) {
 					System.out.println("You do not have to pay!");
 					System.out.println("You won the game!");
@@ -130,6 +132,7 @@ public class Main {
 					//roll is equal to true, to roll again
 					roll=true;
 					//if you loose all your money before you do not have to pay or if rollnum reaches 6 times, you loose the game
+					//earnings is shown and rollnumber
 					if(rollnum==6||bankaccount==0) {
 						System.out.println("You lost the game!");
 						System.out.println("Your earnings is: "+df.format(bankaccount)+" and you on roll number: "+rollnum);
@@ -140,7 +143,8 @@ public class Main {
 				//while rollnum is less than 6 and roll is equal to true, keep rolling till you do not have to pay
 				}while(rollnum<6&&roll==true);
 				//THING TO FOCUS ON:
-				//Find out how your bankaccount will change when you roll the dice for this method
+				//FIND OUT HOW YOUR BANKACCOUNT WILL CHANGE WHEN YOU ROLL THE DICE FOR THIS METHOD
+				//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING
 				
 			}//end Dicegame method
 
