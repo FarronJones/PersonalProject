@@ -102,11 +102,11 @@ public class Main {
 				DecimalFormat df = new DecimalFormat("##.##");
 				//declare random class
 				Random random = new Random();
-				//prompt user rolls
-				System.out.println("Your rolls is as followed:");
 				//your bankaccount is between 1 and a hundred
 				Double bankaccount =random.nextDouble(100)+1;
 				System.out.println("Your bankaccount contains:"+df.format(bankaccount));
+				//prompt user rolls
+				System.out.println("Your rolls is as followed:");
 				//does the code
 				do {
 				//dicegame1 is rolled 1-6
@@ -128,12 +128,24 @@ public class Main {
 				}//end if
 				//else if its different values, you have to pay
 				else if(dicegame1!=dicegame2) {
-					System.out.println("You have to pay!");
+					//randomsubtract is between 1 and 50
+					Double randomsubtract= random.nextDouble(50)+1;
+					//formulas to get the new bankaccount balance after each roll
+					//you add the original bankaccount with the randomsubtract 
+					Double bankaccount2=bankaccount+randomsubtract;
+					//randomsubtract is being multiplied by two since we will have to subtract it anyways
+					Double randomsubtractmultiply=randomsubtract*2;
+					//you subtract both bankaccount2 and randomsubtractmultiply to get the newbankaccount balance each time
+					Double newbankaccountbalance = bankaccount2-randomsubtractmultiply;
+					//amount you have to pay
+					System.out.println("You have to pay: "+df.format(randomsubtract));
+					//what your bankaccount now contains
+					System.out.println("Your bankaccount now contains: "+df.format(newbankaccountbalance));
 					//roll is equal to true, to roll again
 					roll=true;
 					//if you loose all your money before you do not have to pay or if rollnum reaches 6 times, you loose the game
 					//earnings is shown and rollnumber
-					if(rollnum==6||bankaccount==0) {
+					if(rollnum==6||bankaccount<0) {
 						System.out.println("You lost the game!");
 						System.out.println("Your earnings is: "+df.format(bankaccount)+" and you on roll number: "+rollnum);
 						//roll is equal to false, to not roll again
@@ -149,4 +161,5 @@ public class Main {
 			}//end Dicegame method
 
 	}//end class
+
 
