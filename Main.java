@@ -1,4 +1,4 @@
-//imports
+ //imports
 import java.util.Scanner;
 import java.util.Random;
 import java.text.DecimalFormat;
@@ -96,7 +96,7 @@ public class Main {
 			public static void Dicegame() {
 				//int roll as 0
 				int rollnum = 0;
-				//boolean 
+				//boolean roll as true
 				boolean roll =true;
 				//declare decimal format
 				DecimalFormat df = new DecimalFormat("##.##");
@@ -132,20 +132,20 @@ public class Main {
 					Double randomsubtract= random.nextDouble(50)+1;
 					//formulas to get the new bankaccount balance after each roll
 					//you add the original bankaccount with the randomsubtract 
-					Double bankaccount2=bankaccount+randomsubtract;
+					Double bankaccount1=bankaccount+randomsubtract;
 					//randomsubtract is being multiplied by two since we will have to subtract it anyways
 					Double randomsubtractmultiply=randomsubtract*2;
-					//you subtract both bankaccount2 and randomsubtractmultiply to get the newbankaccount balance each time
-					Double newbankaccountbalance = bankaccount2-randomsubtractmultiply;
+					//you subtract both bankaccount1 and randomsubtractmultiply to get the newbankaccount balance each time
+					Double newbankaccountbalance = bankaccount1-randomsubtractmultiply;
 					//amount you have to pay
 					System.out.println("You have to pay: "+df.format(randomsubtract));
 					//what your bankaccount now contains
 					System.out.println("Your bankaccount now contains: "+df.format(newbankaccountbalance));
-					//roll is equal to true, to roll again
-					roll=true;
+					//bankaccount is equal to newbankaccountbalance to switch values for formula to work
+					bankaccount=newbankaccountbalance;
 					//if you loose all your money before you do not have to pay or if rollnum reaches 6 times, you loose the game
 					//earnings is shown and rollnumber
-					if(rollnum==6||bankaccount<0) {
+					if(rollnum==6||newbankaccountbalance<=0) {
 						System.out.println("You lost the game!");
 						System.out.println("Your earnings is: "+df.format(bankaccount)+" and you on roll number: "+rollnum);
 						//roll is equal to false, to not roll again
@@ -155,11 +155,10 @@ public class Main {
 				//while rollnum is less than 6 and roll is equal to true, keep rolling till you do not have to pay
 				}while(rollnum<6&&roll==true);
 				//THING TO FOCUS ON:
-				//FIND OUT HOW YOUR BANKACCOUNT WILL CHANGE WHEN YOU ROLL THE DICE FOR THIS METHOD
+				//ADD SOME USER INTERACTION TO DICE GAME
 				//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING
 				
 			}//end Dicegame method
 
 	}//end class
-
 
