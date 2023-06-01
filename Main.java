@@ -94,6 +94,8 @@ public class Main {
 			}//end checkifplaygame method
 			//Dicegame method
 			public static void Dicegame() {
+				//Declare scanner
+				Scanner scanner = new Scanner(System.in);
 				//int roll as 0
 				int rollnum = 0;
 				//boolean roll as true
@@ -106,18 +108,32 @@ public class Main {
 				Double bankaccount =random.nextDouble(100)+1;
 				System.out.println("Your bankaccount contains:"+df.format(bankaccount));
 				//prompt user rolls
-				System.out.println("Your rolls is as followed:");
+				System.out.println("Press number 1 to roll dice one. Press number 2 to roll dice two in succession: ");
 				//does the code
 				do {
-				//dicegame1 is rolled 1-6
-				int dicegame1 = random.nextInt(6)+1;
-				//dicegame2 is rolled 1-6
-				int dicegame2 = random.nextInt(6)+1;
-				//rollnum is being incremented
-				rollnum++;
-				//prints out the dicegame rolls
-				System.out.println(dicegame1);
-				System.out.println(dicegame2);
+					//dicegame1 is rolled 1-6
+					int dicegame1 = random.nextInt(6)+1;
+					//dicegame2 is rolled 1-6
+					int dicegame2 = random.nextInt(6)+1;
+					//int choices is made for user interaction
+					int choices=scanner.nextInt();
+					//switch choices
+					switch(choices) {
+					//case1 prints out dicegame1
+					case 1:System.out.println("Your dice one landed on "+dicegame1);
+					//continue to go into case two
+					continue;
+					//case2 prints out dicegame2
+					case 2:System.out.println("Your dice two landed on "+dicegame2);
+					//rollnum is being incremented
+					rollnum++;
+					//break 
+					break;
+					//default if the correct dice is not being roll
+					default: System.out.println("Thats not a valid roll");
+					//break
+					break;
+					}
 				//if at least two of the dice rolled the same value, you don't have to pay, you won the game, and earnings is shown.
 					if(dicegame1==dicegame2) {
 					System.out.println("You do not have to pay!");
@@ -155,8 +171,8 @@ public class Main {
 				//while rollnum is less than 6 and roll is equal to true, keep rolling till you do not have to pay
 				}while(rollnum<6&&roll==true);
 				//THING TO FOCUS ON:
-				//ADD SOME USER INTERACTION TO DICE GAME
-				//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING
+				//ADD SOME USER INTERACTION TO DICE GAME(fix the bug where you get the same dice value you don't win)
+				//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING(It will be a game where you use user interaction to fight people)
 				
 			}//end Dicegame method
 
