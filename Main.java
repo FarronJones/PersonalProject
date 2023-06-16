@@ -41,7 +41,6 @@ public class Main {
 							switch(decision) {
 							case 1: System.out.println("You are now gambling with dice:");
 							//game method 1 go here
-							//can call Dicegame method multiple times
 							Dicegame();
 							//break
 							break;
@@ -107,43 +106,55 @@ public class Main {
 				//your bankaccount is between 1 and a hundred
 				Double bankaccount =random.nextDouble(100)+1;
 				System.out.println("Your bankaccount contains:"+df.format(bankaccount));
-				//prompt user rolls
-				System.out.println("Press number 1 to roll dice one. Press number 2 to roll dice two in succession: ");
 				//does the code
 				do {
-					//dicegame1 is rolled 1-6
-					int dicegame1 = random.nextInt(6)+1;
-					//dicegame2 is rolled 1-6
-					int dicegame2 = random.nextInt(6)+1;
+					//prompt user rolls
+					System.out.println("Press number 1 to roll dice one. Press number 2 to roll dice two in succession: ");
+					//int ValueOfDice game 1 and 2 initialized.
+					int ValueOfDicegame1 = 0;
+					int ValueOfDicegame2 = 0;
 					//int choices is made for user interaction
-					int choices=scanner.nextInt();
-					//switch choices
-					switch(choices) {
+					int choice1=scanner.nextInt();
+					int choice2=scanner.nextInt();
+					//switch choice1
+					switch(choice1) {
 					//case1 prints out dicegame1
-					case 1:System.out.println("Your dice one landed on "+dicegame1);
-					//continue to go into case two
-					continue;
-					//case2 prints out dicegame2
-					case 2:System.out.println("Your dice two landed on "+dicegame2);
-					//rollnum is being incremented
-					rollnum++;
-					//break 
-					break;
-					//default if the correct dice is not being roll
-					default: System.out.println("Thats not a valid roll");
-					//break
-					break;
+					case 1:
+						//rollnum is being incremented
+						rollnum++;
+						//dicegame1 is rolled 1-6
+						int dicegame1 = random.nextInt(6)+1;
+						//ValueOfDicegame1=dicegame1
+						ValueOfDicegame1=dicegame1;
+						//break
+						break;
 					}
+					//switch choice2
+					switch(choice2) {
+					//case1 prints out dicegame2
+					case 2:
+						//rollnum is being incremented
+						rollnum++;
+						//dicegame2 is rolled 1-6
+						int dicegame2 = random.nextInt(6)+1;
+						//ValueOfDicegame2=dicegame2
+						ValueOfDicegame2=dicegame2;
+						//break
+						break;
+					}
+					//outputs the dice lands
+					System.out.println("Your dice one landed on "+ValueOfDicegame1);
+					System.out.println("Your dice two landed on "+ValueOfDicegame2);
 				//if at least two of the dice rolled the same value, you don't have to pay, you won the game, and earnings is shown.
-					if(dicegame1==dicegame2) {
+					if(ValueOfDicegame1==ValueOfDicegame2) {
 					System.out.println("You do not have to pay!");
 					System.out.println("You won the game!");
-					System.out.println("You keep the earnings of: "+df.format(bankaccount));
+					System.out.println("You kept the earnings of: "+df.format(bankaccount));
 					//roll is equal to false, to not roll again
 					roll=false;
 				}//end if
 				//else if its different values, you have to pay
-				else if(dicegame1!=dicegame2) {
+				else if(ValueOfDicegame1!=ValueOfDicegame2) {
 					//randomsubtract is between 1 and 50
 					Double randomsubtract= random.nextDouble(50)+1;
 					//formulas to get the new bankaccount balance after each roll
@@ -171,9 +182,7 @@ public class Main {
 				//while rollnum is less than 6 and roll is equal to true, keep rolling till you do not have to pay
 				}while(rollnum<6&&roll==true);
 				//THING TO FOCUS ON:
-				//ADD SOME USER INTERACTION TO DICE GAME(fix the bug where you get the same dice value you don't win)
 				//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING(It will be a game where you use user interaction to fight people)
-				
 			}//end Dicegame method
 
 	}//end class
