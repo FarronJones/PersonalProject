@@ -30,6 +30,9 @@ public class GamePanel extends JPanel implements Runnable {
 	int playerY = 100;
 	int playerSpeed = 4;
 	
+	//FPS
+	int FPS = 60;
+	
 	//constructor
 	public GamePanel() {
 		//set size of GamePanel
@@ -52,18 +55,40 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	@Override
 	public void run() {
+		//sleep method to create a game loop, have the thread sleep for the remaining time
+		//divide nanoseconds from FPS for precise calculation
+		double drawInterval = 1000000000/FPS;// 0.166666 seconds
+		//The next draw time to draw screen which starts the game loop
+		double nextDrawTime = System.nanoTime() + drawInterval;
 		//Create game loop which is important for this simple game
 		//While the gameThread exists it complete code in while loop
 		while(gameThread!=null) {
-			//checks time using nanoTime
-			long currentTime = System.nanoTime();
-			//prints out the currentTime
-			System.out.println("current Time: "+currentTime);
 			//Update: update information such as character positions
 			update();
 			
 			//Draw: draw the screen with updated information
 			repaint();
+			
+			//Try
+			try {
+				//how much time remaining until the next draw time?
+				double remainingTime = nextDrawTime - System.nanoTime();
+				//convert remainingTime from nano to milliseconds
+				remainingTime = remainingTime/1000000;
+				//Overall if update and repaint takes more than the drawInterval, then no time is left
+				//if remainingTime is less than zero
+				if(remainingTime<0) {
+					//remainingTime equal to zero
+					remainingTime=0;
+				}//end if
+				//pauses the game loop till its over
+				Thread.sleep((long)remainingTime);
+				//set new Draw time which is being added 0.01666 seconds later
+				nextDrawTime+=drawInterval;
+		    //catch
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}//end catch
 		}//end while loop
 		
 	}//end run method
@@ -71,16 +96,16 @@ public class GamePanel extends JPanel implements Runnable {
 	public void update() {
 		//change player position
 		//updates player coordinates
-		if(keyH.upPressed=true) {
+		if(keyH.upPressed==true) {
 			playerY -=playerSpeed;
 		}//end if
-		else if(keyH.downPressed=true) {
+		else if(keyH.downPressed==true) {
 			playerY +=playerSpeed;
 		}//end if
-		else if(keyH.leftPressed=true) {
+		else if(keyH.leftPressed==true) {
 			playerX -=playerSpeed;
 		}//end if
-		else if(keyH.rightPressed=true) {
+		else if(keyH.rightPressed==true) {
 			playerX +=playerSpeed;
 		}//end if
 	}//end update method
@@ -89,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
 		//to use the paintComponent
 		super.paintComponent(g);
 		//Changes graphics to graphics 2d class because we making a 2d game
-		Graphics g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D)g;
 		//set color
 		g2.setColor(Color.white);
 		//draws rectangle on screen
@@ -98,4 +123,3 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 	}//end paintComponent method
 }//end class
-
