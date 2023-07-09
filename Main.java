@@ -1,3 +1,5 @@
+//package
+package Main;
 //imports
 import java.util.Scanner;
 import javax.swing.JFrame;
@@ -219,6 +221,8 @@ public class Main {
 				//Make the frame visible
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				//Start game thread
+				gamePanel.startGameThread();
 			}//end Desertinteraction method
 			//Tundrainteraction method
 			public static void Tundrainteraction() {
@@ -238,6 +242,8 @@ public class Main {
 				//Make the frame visible
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				//start game thread
+				gamePanel.startGameThread();
 				
 			}//end Tundrainteraction method
 			//THING TO FOCUS ON:
