@@ -1,3 +1,5 @@
+//package
+package Main;
 //imports
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,13 +8,15 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 //public class extends JPanel class which have functions
 public class GamePanel extends JPanel implements Runnable {
 	//screen settings is being made
 	final int originalTileSize=16;//16x16 tile
 	final int scale = 3;//scaling to fit resolution
-	
-	final int tileSize = originalTileSize*scale;//48x48 tile
+	//public for classes
+	public final int tileSize = originalTileSize*scale;//48x48 tile
 	//int column is initialized as 15
 	final int maxScreenCol = 16;
 	//int row is initialized as 12
@@ -32,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//FPS
 	int FPS = 60;
+	
+	//instantiate GamePanel class and KeyHandler
+	Player player = new Player(this,keyH);
 	
 	//constructor
 	public GamePanel() {
@@ -94,20 +101,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}//end run method
 	//update
 	public void update() {
-		//change player position
-		//updates player coordinates
-		if(keyH.upPressed==true) {
-			playerY -=playerSpeed;
-		}//end if
-		else if(keyH.downPressed==true) {
-			playerY +=playerSpeed;
-		}//end if
-		else if(keyH.leftPressed==true) {
-			playerX -=playerSpeed;
-		}//end if
-		else if(keyH.rightPressed==true) {
-			playerX +=playerSpeed;
-		}//end if
+		//calls player update method
+		player.update();
 	}//end update method
 	//paintComponent method
 	public void paintComponent(Graphics g) {
@@ -115,10 +110,8 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		//Changes graphics to graphics 2d class because we making a 2d game
 		Graphics2D g2 = (Graphics2D)g;
-		//set color
-		g2.setColor(Color.white);
-		//draws rectangle on screen
-		g2.fillRect(playerX,playerY, tileSize, tileSize);
+		//call player draw method
+		player.draw(g2);
 		//good practice to save memory
 		g2.dispose();
 	}//end paintComponent method
