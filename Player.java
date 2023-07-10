@@ -54,43 +54,95 @@ public class Player extends Entity {
 	}//end getPlayerImage
 	//public void update
 	public void update() {
-		//change player position
-				//updates player coordinates
-				if(keyH.upPressed==true) {
-					direction = "up";
-					y-=speed;
+		//if any of the keypressed is equal to true, the the spriteCounter increase
+		if(keyH.upPressed==true || keyH.downPressed == true || 
+				keyH.leftPressed==true || keyH.rightPressed==true) {
+			//change player position
+			//updates player coordinates
+			if(keyH.upPressed==true) {
+				direction = "up";
+				y-=speed;
+			}//end if
+			else if(keyH.downPressed==true) {
+				direction = "down";
+				y +=speed;
+			}//end if
+			else if(keyH.leftPressed==true) {
+				direction = "left";
+				x -=speed;
+			}//end if
+			else if(keyH.rightPressed==true) {
+				direction = "right";
+				x +=speed;
+			}//end if
+			//In every frame the update method gets called, increases the counter by 1
+			//increment the spriteCounter 
+			spriteCounter++;
+			//if it reaches 12 it changes the sprite, since the update method is 60 times per
+			//second then the image changes every 12 frames.
+			//if spriteCounter greater than 12
+			if(spriteCounter>12) {
+				//if spriteNum equal to 1
+				if(spriteNum==1) {
+					//then spriteNum is 2
+					spriteNum=2;
 				}//end if
-				else if(keyH.downPressed==true) {
-					direction = "down";
-					y +=speed;
-				}//end if
-				else if(keyH.leftPressed==true) {
-					direction = "left";
-					x -=speed;
-				}//end if
-				else if(keyH.rightPressed==true) {
-					direction = "right";
-					x +=speed;
-				}//end if
-	}//end update method
+				//else if spriteNum equal to 2
+				else if(spriteNum==2) {
+					//then spriteNum is equal to 1
+					spriteNum=1;
+				}//end else if
+				//the spriteCounter is reset
+				spriteCounter=0;
+			}//end if
+			}//end if
+		}//end update method
 	//public void draw
 	public void draw(Graphics2D g2) {
 		//BufferedImage is null
 		BufferedImage image = null;
 		//switch direction
 		switch(direction) {
-		//each case will update the image accordingly
+		//each case will update the image accordingly to create a working animation
 		case "up":
-			image = up1;
+			//if spriteNum equal 1
+			if(spriteNum==1) {
+				image = up1;
+			}//end if
+			//if spriteNum equal 2
+			if(spriteNum == 2) {
+				image = up2;
+			}//end if
 			break;
 		case "down":
-			image = down1;
+			//if spriteNum equal 1
+			if(spriteNum==1) {
+				image = down1;
+			}//end if
+			//if spriteNum equal 2
+			if(spriteNum == 2) {
+				image = down2;
+			}//end if
 			break;
 		case "left":
-			image = left1;
+			//if spriteNum equal to 1
+			if(spriteNum==1) {
+				image = left1;
+			}//end if
+			//if spriteNum equal to 2
+	        if(spriteNum==2) {
+	        	image = left2;
+	        }//end if
 			break;
 		case "right":
-			image = right1;
+			//if spriteNum equal to 1
+			if(spriteNum==1) {
+				image = right1;
+			}//end if
+			//if spriteNum equal to 2
+			if(spriteNum==2) {
+				image = right2;
+			}//end if
 			break;
 		}
 		//g2.drawImage to draw the image
