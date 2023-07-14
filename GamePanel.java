@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import entity.Player;
+import tile.TileManager;
 
 //public class extends JPanel class which have functions
 public class GamePanel extends JPanel implements Runnable {
@@ -32,7 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//instantiate GamePanel class and KeyHandler
 	Player player = new Player(this,keyH);
-	
+	//instantiate TileManager
+	TileManager tileM = new TileManager(this);
 	//constructor
 	public GamePanel() {
 		//set size of GamePanel
@@ -103,6 +105,8 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		//Changes graphics to graphics 2d class because we making a 2d game
 		Graphics2D g2 = (Graphics2D)g;
+		//call draw method for the tiles
+		tileM.draw(g2);
 		//call player draw method
 		player.draw(g2);
 		//good practice to save memory
