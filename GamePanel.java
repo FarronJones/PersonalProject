@@ -17,11 +17,11 @@ public class GamePanel extends JPanel implements Runnable {
 	//public for classes
 	public final int tileSize = originalTileSize*scale;//48x48 tile
 	//int column is initialized as 15
-	final int maxScreenCol = 16;
+	public final int maxScreenCol = 16;
 	//int row is initialized as 12
-	final int maxScreenRow = 12;
-	final int screenWidth = tileSize * maxScreenCol;  //768 pixels
-	final int screenHeight = tileSize * maxScreenRow; //576 pixels
+	public final int maxScreenRow = 12;
+	public final int screenWidth = tileSize * maxScreenCol;  //768 pixels
+	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
 	
 	//initiate keyHandler
 	KeyHandler keyH = new KeyHandler();
