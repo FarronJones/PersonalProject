@@ -39,8 +39,8 @@ public class TileManager {
 			e.printStackTrace();
 		}//end catch
 	}//end method
-	//public void draw1 method
-			public void draw1(Graphics2D g2) {
+	//public void draw method
+			public void draw(Graphics2D g2) {
 				//Declare int,col,row,x and y with 0
 				int col = 0;
 				int row = 0;
@@ -63,28 +63,5 @@ public class TileManager {
 					}//end if
 				}//end while loop
 			}//end draw
-			//public void draw2 method
-			public void draw2(Graphics2D g2) {
-				//Declare int,col,row,x and y with 0
-				int col = 0;
-				int row = 0;
-				int x = 0;
-				int y = 0;
-				//while col is less than maxScreenCol and row is less than maxScreenRow
-				while(col<gp.maxScreenCol && row<gp.maxScreenRow) {
-					//draw the images
-					g2.drawImage(tile[1].image,x,y, gp.tileSize,gp.tileSize,null);
-					//draw the next col by incrementing
-					col++;
-					x+=gp.tileSize;
-					//if col == gp.maxScreenCol
-					if(col==gp.maxScreenCol) {
-						//resets col and x while increasing row and y position
-						col=0;
-						x=0;
-						row++;
-						y+=gp.tileSize;
-					}//end if
-				}//end while loop
-			}//end draw
 }//end class
+
