@@ -4,6 +4,7 @@ package Main;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import java.util.Random;
+import java.awt.Component;
 import java.text.DecimalFormat;
 //class
 public class Main {
@@ -183,25 +184,10 @@ public class Main {
 			}//end Dicegame method
 			//Mature game method
 			public static void Maturegame() {
-				//Declare random class
-				Random random = new Random();
-				//int environmentencounter is between 1 and 2 because the environment choose will have a different enemy with different attacks.
-				int environmentencounter = random.nextInt(2)+1;
-				//switch environmentencounter
-				switch(environmentencounter) {
-				//case 1 is Desert biome.
-				case 1:System.out.println("You entered the Desert biome!");
+				//Desert biome
+				System.out.println("You entered the Desert biome!");
 				//Desert biome method go here
 				Desertinteraction();
-				//break
-				break;
-				//case 2 is the Tundra biome.
-				case 2: System.out.println("You entered the Tundra biome!");
-				//Tundra biome go here
-				Tundrainteraction();
-				//break
-				break;
-				}//end switch
 			}//end Maturegame method
 			//Desertinteraction method
 			public static void Desertinteraction() {
@@ -224,30 +210,7 @@ public class Main {
 				//Start game thread
 				gamePanel.startGameThread();
 			}//end Desertinteraction method
-			//Tundrainteraction method
-			public static void Tundrainteraction() {
-				//Frame made for the interaction
-				JFrame frame = new JFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
-				//makes it so you cannot resize frame
-				frame.setResizable(false);
-				frame.setTitle("Tundra Interaction");
-				
-				//adds gamepanel to frame
-				GamePanel gamePanel = new GamePanel();
-				frame.add(gamePanel);
-				frame.pack();
-				
-				//Make the frame visible
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				//start game thread
-				gamePanel.startGameThread();
-				
-			}//end Tundrainteraction method
 			//THING TO FOCUS ON:
-			//FIND OUT THE OTHER MATURE GAME TO END UP PLAYING(It will be a game where you use user interaction to fight people)
 			//Want a player to encounter a npc each with 100 health, the player has the same health
 			//The player can use attacks to make the npc health go down, the npc have it own attacks
 			//Try to make it an actual simple game with gui???
