@@ -43,7 +43,7 @@ public class Main {
 							Dicegame();
 							//break
 							break;
-							case 2: System.out.println("GTA is now playing.");
+							case 2: System.out.println("Polar Deserted is now playing.");
 							//game method 2 go here
 							Maturegame();
 							//break;
@@ -184,13 +184,13 @@ public class Main {
 			}//end Dicegame method
 			//Mature game method
 			public static void Maturegame() {
-				//Desert biome
-				System.out.println("You entered the Desert biome!");
+				//Output
+				System.out.println("You might die.");
 				//Desert biome method go here
-				Desertinteraction();
+				PolarDeserted();
 			}//end Maturegame method
 			//Desertinteraction method
-			public static void Desertinteraction() {
+			public static void PolarDeserted() {
 				//Frame made for the interaction
 				JFrame frame = new JFrame();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
