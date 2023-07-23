@@ -4,7 +4,6 @@ package Main;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import java.util.Random;
-import java.awt.Component;
 import java.text.DecimalFormat;
 //class
 public class Main {
@@ -31,7 +30,7 @@ public class Main {
 						//if canplay is equal to true, prompt user to play the game.
 						if(canplay==true) {
 							System.out.println("Let's begin the game!");
-							//game code, if 1 is rolled you play a dicegame game, if 2 is rolled you play ____ game
+							//game code, if 1 is rolled you play a dicegame game, if 2 is rolled you play the PolarDeserted game
 							//declare random class
 							Random random = new Random();
 							//int decision is between 1 and 2, depends on which number is said, a different game will be played
@@ -186,10 +185,10 @@ public class Main {
 			public static void Maturegame() {
 				//Output
 				System.out.println("You might die.");
-				//Desert biome method go here
+				//PolarDeserted method go here
 				PolarDeserted();
 			}//end Maturegame method
-			//Desertinteraction method
+			//PolarDeserted method
 			public static void PolarDeserted() {
 				//Frame made for the interaction
 				JFrame frame = new JFrame();
@@ -197,7 +196,7 @@ public class Main {
 				
 				//makes it so you cannot resize frame
 				frame.setResizable(false);
-				frame.setTitle("Desert Interaction");
+				frame.setTitle("PolarDeserted");
 				
 				//adds gamepanel to frame
 				GamePanel gamePanel = new GamePanel();
@@ -209,7 +208,7 @@ public class Main {
 				frame.setVisible(true);
 				//Start game thread
 				gamePanel.startGameThread();
-			}//end Desertinteraction method
+			}//end PolarDeserted method
 			//THING TO FOCUS ON:
 			//Want a player to encounter a npc each with 100 health, the player has the same health
 			//The player can use attacks to make the npc health go down, the npc have it own attacks
