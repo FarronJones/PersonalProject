@@ -17,9 +17,12 @@ public class OBJ_Heart extends SuperObject {
 		//try
 		try {
 			//set health images
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/heart_full.png"));
+			image  = ImageIO.read(getClass().getResourceAsStream("/objects/heart_full.png"));
 			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/heart_half.png"));
 			image3 = ImageIO.read(getClass().getResourceAsStream("/objects/heart_blank.png"));
+			image  = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			image2 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			image3 = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 		}//end try
 		//catch
 		catch(IOException e) {
@@ -27,3 +30,4 @@ public class OBJ_Heart extends SuperObject {
 		}//end catch
 }//end OBJ_Heart method
 }//end class
+
