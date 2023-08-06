@@ -62,18 +62,18 @@ public class GamePanel extends JPanel implements Runnable {
 	public GamePanel(GamePanel gp) {
 		//this.gp=gp;
 		this.gp=gp;
+		//set size of GamePanel
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+		//set background color
+		this.setBackground(Color.black);
+		//improve game rendering performance
+		this.setDoubleBuffered(true);
+		//add key input to panel
+		this.addKeyListener(keyH);
+		//GamePanel can be focused to receive key input
+		this.setFocusable(true);
 		//try
 		try {
-			//set size of GamePanel
-			this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-			//set background color
-			this.setBackground(Color.black);
-			//improve game rendering performance
-			this.setDoubleBuffered(true);
-			//add key input to panel
-			this.addKeyListener(keyH);
-			//GamePanel can be focused to receive key input
-			this.setFocusable(true);
 			//inputstream is equal get the font
 			InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
 			//maruMonica equal Fonnt is created
