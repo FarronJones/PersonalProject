@@ -191,11 +191,34 @@ public class GamePanel extends JPanel implements Runnable {
 		//int i equal to zero
 		int i = 0;
 		//while i is less than player.maxLife/2
+		//Draw the max life
 		while(i<player.maxLife/2) {
+			//draw the blank hearts
 			g2.drawImage(heart_blank,x,y,null);
 			//i is being incremented
 			i++;
 			//increases x by tileSize
+			x+=gp.tileSize;
+		}//end while loop
+		//Resets the values
+		x=gp.tileSize/2;
+		y=gp.tileSize/2;
+		i=0;
+		//Draw the current life
+		//while i is less than gp.player.life
+		while(i<gp.player.life) {
+			//draw the half hearts
+			g2.drawImage(heart_half,x,y,null);
+			//increment i
+			i++;
+			//if i is less than gp.player.life
+			if(i<gp.player.life) {
+				//draw the full hearts
+				g2.drawImage(heart_full,x,y,null);
+			}//end if
+			//increment i
+			i++;
+			//increment i
 			x+=gp.tileSize;
 		}//end while loop
 	}//end drawPlayerLife method
