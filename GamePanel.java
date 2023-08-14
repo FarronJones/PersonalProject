@@ -56,12 +56,8 @@ public class GamePanel extends JPanel implements Runnable {
 	Font maruMonica;
 	//GamePanel
 	GamePanel gp;
-
 	
-	//constructor
-	public GamePanel(GamePanel gp) {
-		//this.gp=gp;
-		this.gp=gp;
+	public GamePanel() {
 		//set size of GamePanel
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		//set background color
@@ -72,27 +68,33 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(keyH);
 		//GamePanel can be focused to receive key input
 		this.setFocusable(true);
-		//try
-		try {
-			//inputstream is equal get the font
-			InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
-			//maruMonica equal Fonnt is created
-			maruMonica = Font.createFont(Font.TRUETYPE_FONT,is);
-		}//end try
-		//catch
-		catch(FontFormatException e) {
-			e.printStackTrace();
-		}//end catch
-		//catch
-		catch(IOException e) {
-			e.printStackTrace();
-		}//end catch
-		//create HUD OBJECT
-		SuperObject heart = new OBJ_Heart(gp);
-		//set heart to images
-		heart_full=heart.image;
-		heart_half=heart.image2;
-		heart_blank=heart.image3;
+	}
+	
+	//constructor
+		public GamePanel(GamePanel gp) {
+			//this.gp=gp;
+			this.gp=gp;
+			//try
+			try {
+				//inputstream is equal get the font
+				InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
+				//maruMonica equal Fonnt is created
+				maruMonica = Font.createFont(Font.TRUETYPE_FONT,is);
+			}//end try
+			//catch
+			catch(FontFormatException e) {
+				e.printStackTrace();
+			}//end catch
+			//catch
+			catch(IOException e) {
+				e.printStackTrace();
+			}//end catch
+			//create HUD OBJECT
+			SuperObject heart = new OBJ_Heart(gp);
+			//set heart to images
+			heart_full=heart.image;
+			heart_half=heart.image2;
+			heart_blank=heart.image3;
 	}//end constructor
 	//public void setupGame
 	public void setupGame() {
@@ -162,8 +164,6 @@ public class GamePanel extends JPanel implements Runnable {
 		tileM.draw(g2);
 		//call player draw method
 		player.draw(g2);
-		//call draw method for hearts
-		draw(g2);
 		//good practice to save memory
 		g2.dispose();
 	}//end paintComponent method
@@ -220,6 +220,6 @@ public class GamePanel extends JPanel implements Runnable {
 			i++;
 			//increment i
 			x+=gp.tileSize;
-		}//end while loop
+		}//end while loope
 	}//end drawPlayerLife method
 }//end class
