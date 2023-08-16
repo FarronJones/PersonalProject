@@ -1,6 +1,5 @@
 //package
 package tile;
-
 //imports
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -9,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import Main.GamePanel;
+import Main.UtilityTool;
 
 //Public class TileManager
 public class TileManager {
@@ -33,21 +33,28 @@ public class TileManager {
 	}//end constructor
 	//public void getTileImage
 	public void getTileImage() {
+			//setup the tile images
+			setup(0,"Desert",false);
+			setup(1,"Tundra",false);
+	
+	}//end method
+	//public void setup method
+	public void setup(int index, String imageName, boolean collision) {
+		//instantiate utilityTool
+		UtilityTool uTool = new UtilityTool();
 		//try
 		try {
-			//Tile at array 0 equal new tile
-			tile[0] = new Tile();
-			//get tileImage from Desert.png
-			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Desert.png"));
-			
-			//Tile at array 1 equal new tile
-			tile[1] = new Tile();
-			//get tileImage from Tundra.png
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Tundra.png"));
-		}catch(IOException e) {
+			//Code to scale the tiles
+			tile[index]= new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/"+ imageName +".png"));
+			tile[index].image = uTool.scaleImage(tile[index].image,gp.tileSize,gp.tileSize);
+			tile[index].collision=collision;
+		}//end try
+		//catch
+		catch(IOException e) {
 			e.printStackTrace();
 		}//end catch
-	}//end method
+	}//end setup method
 	//public void loadMap method
 	public void loadMap(String filePath) {
 		//try
@@ -100,7 +107,7 @@ public class TileManager {
 					//extract a tile number
 					int tileNum = mapTileNum[col][row];
 					//draw the images
-					g2.drawImage(tile[tileNum].image,x,y, gp.tileSize,gp.tileSize,null);
+					g2.drawImage(tile[tileNum].image,x,y,null);
 					//draw the next col by incrementing
 					col++;
 					x+=gp.tileSize;
