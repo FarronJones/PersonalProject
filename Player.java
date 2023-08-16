@@ -2,16 +2,23 @@
 package entity;
 //imports
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 //Import Gamepanel and KeyHandler from main class
 import Main.GamePanel;
 import Main.KeyHandler;
-
+import Main.UtilityTool;
+import tile.Tile;
 //public class Player extends Entity
 public class Player extends Entity {
+	Graphics2D g2;
 	//GamePanel gp
 	GamePanel gp;
 	//KeyHandler KeyH
@@ -40,21 +47,35 @@ public class Player extends Entity {
 	}//end void
 	//public void getPlayerImage
 	public void getPlayerImage() {
-		//try
-		try {
-			//all this code load the images
-			up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
-		}catch(IOException e) {
-			e.printStackTrace();
-		}//end catch
+		//setup the player images
+		up1=setup("boy_up_1");
+		up2=setup("boy_up_2");
+		down1=setup("boy_down_1");
+		down2=setup("boy_down_2");
+		left1=setup("boy_left_1");
+		left2=setup("boy_left_2");
+		right1=setup("boy_right_1");
+		right2=setup("boy_right_2");
 	}//end getPlayerImage
+	//BufferedImage setup method
+	public BufferedImage setup(String imageName) {
+		//instantiate utilityTool
+		UtilityTool uTool = new UtilityTool();
+		//image is equal to null
+		BufferedImage image = null;
+				//try
+				try {
+					//scale the player images
+					image = ImageIO.read(getClass().getResourceAsStream("/player/"+imageName+".png"));
+					image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+				}//end try
+				//catch
+				catch(IOException e) {
+					e.printStackTrace();
+				}//end catch
+				//return image
+				return image;
+	}//end BufferedImage setup method
 	//public void update
 	public void update() {
 		//if any of the keypressed is equal to true, the the spriteCounter increase
@@ -149,6 +170,6 @@ public class Player extends Entity {
 			break;
 		}
 		//g2.drawImage to draw the image
-		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize,null);
+		g2.drawImage(image, x, y,null);
 	}//end draw method
 }//end public class
