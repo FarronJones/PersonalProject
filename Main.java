@@ -4,6 +4,7 @@ package Main;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import java.util.Random;
+import java.awt.Graphics2D;
 import java.text.DecimalFormat;
 //class
 public class Main {
@@ -127,6 +128,10 @@ public class Main {
 						ValueOfDicegame1=dicegame1;
 						//break
 						break;
+						//default, if number besides 1 or 2 is entered, or even the same number
+						default:System.out.println("Stop screwing around roll the dice.");
+						//continue, to continue the code again(the switch code)
+						continue;
 					}
 					//switch choice2
 					switch(choice2) {
@@ -140,6 +145,10 @@ public class Main {
 						ValueOfDicegame2=dicegame2;
 						//break
 						break;
+						//default, if number besides 1 or 2 is entered, or even the same number
+						default:System.out.println("Lmao what are you doing?");
+						//continue, to continue the code again(the switch code)
+						continue;
 					}
 					//outputs the dice lands
 					System.out.println("Your dice one landed on "+ValueOfDicegame1);
