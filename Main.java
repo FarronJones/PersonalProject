@@ -4,7 +4,6 @@ package Main;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import java.util.Random;
-import java.awt.Graphics2D;
 import java.text.DecimalFormat;
 //class
 public class Main {
