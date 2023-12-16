@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
 	
 	//initiate keyHandler
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(null);
 	//declare Thread gameThread
 	Thread gameThread;
 	
@@ -105,10 +105,10 @@ public class GamePanel extends JPanel implements Runnable {
 	//update
 	public void update() {
 		//if gameState equal to playState
-		if(gameState==playState) {
+	  //if(gameState==playState) {
 		//calls player update method
 		player.update();
-		}//end if
+		//}//end if
 	}//end update method
 	//paintComponent1 method
 	public void paintComponent(Graphics g) {
