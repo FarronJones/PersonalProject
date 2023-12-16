@@ -6,9 +6,14 @@ import java.awt.event.KeyListener;
 
 //KeyHandler class
 public class KeyHandler implements KeyListener {
+	//GamePanel gp
+	GamePanel gp;
 	//declare booleans to use for keyPressed and keyReleased
 	public boolean upPressed, downPressed, leftPressed, rightPressed;
-	
+	//Public KeyHandler constructor
+	public KeyHandler(GamePanel gp) {
+		this.gp=gp;
+	}//end KeyHandler constructor
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
