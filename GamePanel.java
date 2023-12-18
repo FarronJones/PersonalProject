@@ -35,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
 	//FPS
 	int FPS = 60;
 	
+	//Instantiate UI class
+	public UI ui = new UI(this);
 	//instantiate GamePanel class and KeyHandler
 	public Player player = new Player(this,keyH);
 	//instantiate TileManager
@@ -120,6 +122,8 @@ public class GamePanel extends JPanel implements Runnable {
 		tileM.draw(g2);
 		//call player draw method
 		player.draw(g2);
+		//UI call drawPlayerLife
+		ui.drawPlayerLife(g2);
 		//good practice to save memory
 		g2.dispose();
 	}//end paintComponent method
