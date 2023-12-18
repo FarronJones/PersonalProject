@@ -60,11 +60,11 @@ public class UI {
 				//if gp.gameState equal equal to gp.playState
 				if(gp.gameState==gp.playState) {
 				//drawPlayerLife method
-				drawPlayerLife();
+				drawPlayerLife(g2);
 				}//end if
 			}//end draw method
 			//public void drawPlayerLife method
-			public void drawPlayerLife() {
+			public void drawPlayerLife(Graphics2D g2) {
 				//int x and y is tileSize divided by 2
 				int x = gp.tileSize/2;
 				int y = gp.tileSize/2;
