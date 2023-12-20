@@ -47,22 +47,6 @@ public class UI {
 				heart_half=heart.image2;
 				heart_blank=heart.image3;
 		}//end UI constructor
-			//public void draw
-			public void draw(Graphics2D g2) {
-				//this.g2 equal to g2
-				this.g2=g2;
-				//set font to maruMonica
-				g2.setFont(maruMonica);
-				//set rendering
-				g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-				//set color to white
-				g2.setColor(Color.white);
-				//if gp.gameState equal equal to gp.playState
-				if(gp.gameState==gp.playState) {
-				//drawPlayerLife method
-				drawPlayerLife(g2);
-				}//end if
-			}//end draw method
 			//public void drawPlayerLife method
 			public void drawPlayerLife(Graphics2D g2) {
 				//int x and y is tileSize divided by 2
