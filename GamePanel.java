@@ -24,13 +24,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
 	
 	//initiate keyHandler
-	KeyHandler keyH = new KeyHandler(null);
+	KeyHandler keyH = new KeyHandler(this);
 	//declare Thread gameThread
 	Thread gameThread;
-	
-	//Game State
-	public int gameState;
-	public final int playState=1;
 	
 	//FPS
 	int FPS = 60;
@@ -54,12 +50,6 @@ public class GamePanel extends JPanel implements Runnable {
 		//GamePanel can be focused to receive key input
 		this.setFocusable(true);
 	}
-	
-	//public void setupGame
-	public void setupGame() {
-		//gameState equal to playState
-		gameState=playState;
-	}//end setupGame
 	//startGameThread
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -106,11 +96,9 @@ public class GamePanel extends JPanel implements Runnable {
 	}//end run method
 	//update
 	public void update() {
-		//if gameState equal to playState
-	  //if(gameState==playState) {
 		//calls player update method
 		player.update();
-		//}//end if
+		
 	}//end update method
 	//paintComponent1 method
 	public void paintComponent(Graphics g) {
@@ -128,3 +116,4 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 	}//end paintComponent method
 }//end class
+
