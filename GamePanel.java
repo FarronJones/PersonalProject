@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import entity.Entity;
 import entity.Player;
 import tile.TileManager;
 
@@ -27,7 +29,10 @@ public class GamePanel extends JPanel implements Runnable {
 	KeyHandler keyH = new KeyHandler(this);
 	//declare Thread gameThread
 	Thread gameThread;
-	
+	//Entity monster array
+	public Entity monster[] = new Entity[10];
+	//ArrayList created
+	ArrayList<Entity> entityList = new ArrayList<>();
 	//FPS
 	int FPS = 60;
 	
@@ -116,4 +121,3 @@ public class GamePanel extends JPanel implements Runnable {
 		g2.dispose();
 	}//end paintComponent method
 }//end class
-
