@@ -18,9 +18,10 @@ public class Entity {
 	public int spriteCounter = 0;
 	//Declare int spriteNum as 1
 	public int spriteNum = 1;
+	//public int actionLockCounter equal to zero
+	public int actionLockCounter=0;
 
 	//Character Status
 	public int maxLife;
 	public int life;
 }//end class
-
