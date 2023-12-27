@@ -1,5 +1,6 @@
 //package
 package entity;
+import java.awt.Graphics2D;
 //imports
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class Entity {
 	//GamePanel gp
 	GamePanel gp;
 	//public int x,y declared
-	public int x,y;
+	public int worldX,worldY;
 	//public int speed declared
 	public int speed;
 	//To store image file
@@ -43,7 +44,7 @@ public class Entity {
 						//try
 						try {
 							//scale the player images
-							image = ImageIO.read(getClass().getResourceAsStream(imageName+".png"));
+							image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
 							image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 						}//end try
 						//catch
@@ -53,4 +54,61 @@ public class Entity {
 						//return image
 						return image;
 			}//end BufferedImage setup method
+			public void draw(Graphics2D g2) {
+				//BufferedImage is null
+				BufferedImage image = null;
+				int screenX = worldX-gp.player.worldX+gp.player.screenX;
+				int screenY = worldY-gp.player.worldY+gp.player.screenY;
+				if(worldX+gp.tileSize>gp.player.worldX-gp.player.screenX&&
+				   worldX-gp.tileSize<gp.player.worldX+gp.player.screenX&&
+				   worldY+gp.tileSize>gp.player.worldY-gp.player.screenY&&
+				   worldY-gp.tileSize<gp.player.worldY+gp.player.screenY) {
+					//switch direction
+					switch(direction) {
+					//each case will update the image accordingly to create a working animation
+					case "up":
+						//if spriteNum equal 1
+						if(spriteNum==1) {
+							image = up1;
+						}//end if
+						//if spriteNum equal 2
+						if(spriteNum == 2) {
+							image = up2;
+						}//end if
+						break;
+					case "down":
+						//if spriteNum equal 1
+						if(spriteNum==1) {
+							image = down1;
+						}//end if
+						//if spriteNum equal 2
+						if(spriteNum == 2) {
+							image = down2;
+						}//end if
+						break;
+					case "left":
+						//if spriteNum equal to 1
+						if(spriteNum==1) {
+							image = left1;
+						}//end if
+						//if spriteNum equal to 2
+				        if(spriteNum==2) {
+				        	image = left2;
+				        }//end if
+						break;
+					case "right":
+						//if spriteNum equal to 1
+						if(spriteNum==1) {
+							image = right1;
+						}//end if
+						//if spriteNum equal to 2
+						if(spriteNum==2) {
+							image = right2;
+						}//end if
+						break;
+					}
+					g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
+				}
+						
+			}//end draw
 }//end class
