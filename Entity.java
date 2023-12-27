@@ -54,6 +54,7 @@ public class Entity {
 						//return image
 						return image;
 			}//end BufferedImage setup method
+			//public void draw
 			public void draw(Graphics2D g2) {
 				//BufferedImage is null
 				BufferedImage image = null;
@@ -106,9 +107,10 @@ public class Entity {
 							image = right2;
 						}//end if
 						break;
-					}
+					}//end switch
+					//draw
 					g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
-				}
+				}//end if
 						
 			}//end draw
 }//end class
