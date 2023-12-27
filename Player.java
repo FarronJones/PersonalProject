@@ -21,10 +21,16 @@ public class Player extends Entity {
 	Graphics2D g2;
 	//KeyHandler KeyH
 	KeyHandler keyH;
+	//Public final int screen X and Y
+	public final int screenX;
+	public final int screenY;
 	//Constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
 		//super(gp)
 		super(gp);
+		//Screen X and Y
+		screenX=gp.screenWidth/2 -(gp.tileSize/2);
+		screenY=gp.screenHeight/2-(gp.tileSize/2);
 		//this==this
 		this.keyH=keyH;
 		//call setDefaultValues method
@@ -35,8 +41,8 @@ public class Player extends Entity {
 	//public void setDefaulValues
 	public void setDefaultValues() {
 		//repeating code from GamePanel class
-		x=100;
-		y=100;
+		worldX=100;
+		worldY=100;
 		speed=4;
 		//default direction
 		direction = "down";
@@ -65,19 +71,23 @@ public class Player extends Entity {
 			//updates player coordinates
 			if(keyH.upPressed==true) {
 				direction = "up";
-				y-=speed;
+				worldY-=speed;
+				
 			}//end if
 			else if(keyH.downPressed==true) {
 				direction = "down";
-				y +=speed;
+				worldY+=speed;
+				
 			}//end if
 			else if(keyH.leftPressed==true) {
 				direction = "left";
-				x -=speed;
+				worldX-=speed;
+				
 			}//end if
 			else if(keyH.rightPressed==true) {
 				direction = "right";
-				x +=speed;
+				worldX+=speed;
+				
 			}//end if
 			//In every frame the update method gets called, increases the counter by 1
 			//increment the spriteCounter 
@@ -150,6 +160,6 @@ public class Player extends Entity {
 			break;
 		}
 		//g2.drawImage to draw the image
-		g2.drawImage(image, x, y,null);
+		g2.drawImage(image, worldX,worldY,null);
 	}//end draw method
 }//end public class
