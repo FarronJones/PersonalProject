@@ -1,0 +1,21 @@
+//package
+package Main;
+//imports
+import monster.MON_IceClops;
+
+//public class AssetSetter
+public class AssetSetter{
+	//GamePanel gp
+	GamePanel gp;
+	//public AssetSetter constructor
+	public AssetSetter(GamePanel gp) {
+		//this.gp=gp;
+		this.gp=gp;
+	}//end AssetSetter constructor
+	//public void setMonster
+	public void setMonster() {
+	gp.monster[0]= new MON_IceClops(gp);
+	gp.monster[0].worldX=gp.tileSize*21;
+	gp.monster[0].worldY=gp.tileSize*21;
+	}//end public void setMonster method
+}//end public class AssetSetter
