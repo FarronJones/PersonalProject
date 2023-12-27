@@ -12,17 +12,19 @@ public class MON_IceClops extends Entity {
 	public MON_IceClops(GamePanel gp) {
 		//super(gp)
 		super(gp);
+		direction="down";
+		speed=1;
 		//call setDefaultValues method
-		setDefaultValues();
+		//setDefaultValues();
 		//call getMonsterImage method
-		getMonsterImage();
+		//getMonsterImage();
 		
 	}//end public MON_IceClops constructor
 	//public void setDefaulValues
 		public void setDefaultValues() {
 			//repeating code from GamePanel class
-			x=100;
-			y=100;
+			worldX=100;
+			worldY=100;
 			speed=2;
 			//default direction
 			direction = "down";
@@ -33,14 +35,14 @@ public class MON_IceClops extends Entity {
 		//public void getMonsterImage
 		public void getMonsterImage() {
 			//setup the monster images
-			up1=setup("/MON/IceClops_up_1");
-			up2=setup("/MON/IceClops_up_2");
-			down1=setup("/MON/IceClops_down_1");
-			down2=setup("/MON/IceClops_down_2");
-			left1=setup("/MON/IceClops_left_1");
-			left2=setup("/MON/IceClops_left_2");
-			right1=setup("/MON/IceClops_right_1");
-			right2=setup("/MON/IceClops_right_2");
+			up1=setup("/monster/IceClops_up_1");
+			up2=setup("/monster/IceClops_up_2");
+			down1=setup("/monster/IceClops_down_1");
+			down2=setup("/monster/IceClops_down_2");
+			left1=setup("/monster/IceClops_left_1");
+			left2=setup("/monster/IceClops_left_2");
+			right1=setup("/monster/IceClops_right_1");
+			right2=setup("/monster/IceClops_right_2");
 		}//end getMonsterImage
 		//public void setAction
 		public void setAction() {
