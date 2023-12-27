@@ -1,22 +1,17 @@
 //package
 package monster;
-import java.awt.image.BufferedImage;
 //imports
-import java.io.IOException;
-import java.util.Random;
-import javax.imageio.ImageIO;
 import Main.GamePanel;
-import Main.UtilityTool;
 import entity.Entity;
-
-
+import java.util.Random;
+//public class MON_IceClops
 public class MON_IceClops extends Entity {
 	//GamePanel gp
 	GamePanel gp;
 	//public MON_IceClops constructor
 	public MON_IceClops(GamePanel gp) {
-		//this==this
-		this.gp = gp;
+		//super(gp)
+		super(gp);
 		//call setDefaultValues method
 		setDefaultValues();
 		//call getMonsterImage method
@@ -38,14 +33,14 @@ public class MON_IceClops extends Entity {
 		//public void getMonsterImage
 		public void getMonsterImage() {
 			//setup the monster images
-			up1=setup("IceClops_up_1");
-			up2=setup("IceClops_up_2");
-			down1=setup("IceClops_down_1");
-			down2=setup("IceClops_down_2");
-			left1=setup("IceClops_left_1");
-			left2=setup("IceClops_left_2");
-			right1=setup("IceClops_right_1");
-			right2=setup("IceClops_right_2");
+			up1=setup("/MON/IceClops_up_1");
+			up2=setup("/MON/IceClops_up_2");
+			down1=setup("/MON/IceClops_down_1");
+			down2=setup("/MON/IceClops_down_2");
+			left1=setup("/MON/IceClops_left_1");
+			left2=setup("/MON/IceClops_left_2");
+			right1=setup("/MON/IceClops_right_1");
+			right2=setup("/MON/IceClops_right_2");
 		}//end getMonsterImage
 		//public void setAction
 		public void setAction() {
@@ -76,23 +71,4 @@ public class MON_IceClops extends Entity {
 			//actionLockCounter =0
 			actionLockCounter=0;
 		}//end setAction method
-		//BufferedImage setup method
-		public BufferedImage setup(String imageName) {
-			//instantiate utilityTool
-			UtilityTool uTool = new UtilityTool();
-			//image is equal to null
-			BufferedImage image = null;
-					//try
-					try {
-						//scale the player images
-						image = ImageIO.read(getClass().getResourceAsStream("/player/"+imageName+".png"));
-						image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-					}//end try
-					//catch
-					catch(IOException e) {
-						e.printStackTrace();
-					}//end catch
-					//return image
-					return image;
-		}//end BufferedImage setup method
 }//end public class MON_IceClops
