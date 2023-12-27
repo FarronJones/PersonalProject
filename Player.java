@@ -9,7 +9,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.imageio.ImageIO;
 //Import Gamepanel and KeyHandler from main class
 import Main.GamePanel;
@@ -18,15 +17,15 @@ import Main.UtilityTool;
 import tile.Tile;
 //public class Player extends Entity
 public class Player extends Entity {
+	//Graphics 2D g2
 	Graphics2D g2;
-	//GamePanel gp
-	GamePanel gp;
 	//KeyHandler KeyH
 	KeyHandler keyH;
 	//Constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
+		//super(gp)
+		super(gp);
 		//this==this
-		this.gp = gp;
 		this.keyH=keyH;
 		//call setDefaultValues method
 		setDefaultValues();
@@ -48,34 +47,15 @@ public class Player extends Entity {
 	//public void getPlayerImage
 	public void getPlayerImage() {
 		//setup the player images
-		up1=setup("boy_up_1");
-		up2=setup("boy_up_2");
-		down1=setup("boy_down_1");
-		down2=setup("boy_down_2");
-		left1=setup("boy_left_1");
-		left2=setup("boy_left_2");
-		right1=setup("boy_right_1");
-		right2=setup("boy_right_2");
+		up1=setup("/player/boy_up_1");
+		up2=setup("/player/boy_up_2");
+		down1=setup("/player/boy_down_1");
+		down2=setup("/player/boy_down_2");
+		left1=setup("/player/boy_left_1");
+		left2=setup("/player/boy_left_2");
+		right1=setup("/player/boy_right_1");
+		right2=setup("/player/boy_right_2");
 	}//end getPlayerImage
-	//BufferedImage setup method
-	public BufferedImage setup(String imageName) {
-		//instantiate utilityTool
-		UtilityTool uTool = new UtilityTool();
-		//image is equal to null
-		BufferedImage image = null;
-				//try
-				try {
-					//scale the player images
-					image = ImageIO.read(getClass().getResourceAsStream("/player/"+imageName+".png"));
-					image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-				}//end try
-				//catch
-				catch(IOException e) {
-					e.printStackTrace();
-				}//end catch
-				//return image
-				return image;
-	}//end BufferedImage setup method
 	//public void update
 	public void update() {
 		//if any of the keypressed is equal to true, the the spriteCounter increase
