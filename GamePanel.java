@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import entity.Entity;
 import entity.Player;
+import monster.MON_IceClops;
 import tile.TileManager;
 
 //public class extends JPanel class which have functions
@@ -42,6 +43,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public Player player = new Player(this,keyH);
 	//instantiate TileManager
 	TileManager tileM = new TileManager(this);
+	//public AssetSetter
+	public AssetSetter aSetter = new AssetSetter(this);
 	
 	public GamePanel() {
 		//set size of GamePanel
@@ -101,8 +104,11 @@ public class GamePanel extends JPanel implements Runnable {
 	}//end run method
 	//update
 	public void update() {
+		//aSetter to set Monster
+		aSetter.setMonster();
 		//calls player update method
 		player.update();
+	
 		
 	}//end update method
 	//paintComponent1 method
@@ -113,6 +119,12 @@ public class GamePanel extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D)g;
 		//call draw method for the tiles
 		tileM.draw(g2);
+		//Monster
+		for(int i=0; i<monster.length;i++) {
+			  if(monster[i]!=null) {
+				monster[i].draw(g2);
+			}//end if
+		}//end for loop
 		//call player draw method
 		player.draw(g2);
 		//UI call drawPlayerLife
