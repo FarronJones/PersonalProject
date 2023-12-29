@@ -14,10 +14,11 @@ public class MON_IceClops extends Entity {
 		super(gp);
 		direction="down";
 		speed=1;
+		//call getMonsterImage method
+		getMonsterImage();
 		//call setDefaultValues method
 		//setDefaultValues();
-		//call getMonsterImage method
-		//getMonsterImage();
+		
 		
 	}//end public MON_IceClops constructor
 	//public void setDefaulValues
@@ -35,14 +36,14 @@ public class MON_IceClops extends Entity {
 		//public void getMonsterImage
 		public void getMonsterImage() {
 			//setup the monster images
-			up1=setup("/monster/IceClops_up_1");
-			up2=setup("/monster/IceClops_up_2");
-			down1=setup("/monster/IceClops_down_1");
-			down2=setup("/monster/IceClops_down_2");
-			left1=setup("/monster/IceClops_left_1");
-			left2=setup("/monster/IceClops_left_2");
-			right1=setup("/monster/IceClops_right_1");
-			right2=setup("/monster/IceClops_right_2");
+			up1=setup("/monster/Iceclops");
+			up2=setup("/monster/Iceclops");
+			down1=setup("/monster/Iceclops");
+			down2=setup("/monster/Iceclops");
+			left1=setup("/monster/Iceclops");
+			left2=setup("/monster/Iceclops");
+			right1=setup("/monster/Iceclops");
+			right2=setup("/monster/IceClops");
 		}//end getMonsterImage
 		//public void setAction
 		public void setAction() {
