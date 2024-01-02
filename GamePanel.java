@@ -108,6 +108,12 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setMonster();
 		//calls player update method
 		player.update();
+		//for loop to go through monster.length
+		for(int i=0; i<monster.length;i++) {
+			if(monster[i]!=null) {
+				monster[i].update();
+			}//end if
+		}//end for loop
 	
 		
 	}//end update method
