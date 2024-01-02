@@ -113,4 +113,11 @@ public class Entity {
 				}//end if
 						
 			}//end draw
+			//public void setAction
+			public void setAction() {}
+			//public void update
+			public void update() {
+				//setAction method is called
+				setAction();
+				}//end update
 }//end class
