@@ -15,7 +15,7 @@ public class AssetSetter{
 	//public void setMonster
 	public void setMonster() {
 	gp.monster[0]= new MON_IceClops(gp);
-	gp.monster[0].worldX=gp.tileSize*21;
-	gp.monster[0].worldY=gp.tileSize*21;
+	gp.monster[0].worldX=gp.tileSize*7;
+	gp.monster[0].worldY=gp.tileSize*6;
 	}//end public void setMonster method
 }//end public class AssetSetter
