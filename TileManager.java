@@ -25,7 +25,7 @@ public class TileManager {
 		//create ten type of Tiles
 		tile = new Tile[10];
 		//instantiate mapTileNum
-		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		//call method from constructor
 		getTileImage();
 		//call loadMap method
