@@ -66,12 +66,12 @@ public class TileManager {
 			//Declare col,row with 0
 			int col = 0;
 			int row = 0;
-			//while col is less than maxScreenCol and row is less than maxScreenRow
-			while(col<gp.maxScreenCol && row< gp.maxScreenRow) {
+			//while col is less than maxWorldCol and row is less than maxWorldRow
+			while(col<gp.maxWorldCol && row< gp.maxWorldRow) {
 				//read line of Map.txt
 				String line = br.readLine();
-				//while col<gp.maxScreenCol
-				while(col<gp.maxScreenCol) {
+				//while col<gp.maxWorldCol
+				while(col<gp.maxWorldCol) {
 					//Splits the numbers and put in array
 					String numbers[] = line.split(" ");
 					//Changing string to int to able to use
@@ -81,8 +81,8 @@ public class TileManager {
 					//increment col
 					col++;
 				}//end while
-				//if col equal equal to gp.maxScreenCol
-				if(col==gp.maxScreenCol) {
+				//if col equal equal to gp.WorldCol
+				if(col==gp.maxWorldCol) {
 					//col is equal to zero
 					col = 0;
 					//row is being incremented
@@ -97,27 +97,37 @@ public class TileManager {
 	}//end method
 	//public void draw method
 			public void draw(Graphics2D g2) {
-				//Declare int,col,row,x and y with 0
-				int col = 0;
-				int row = 0;
-				int x = 0;
-				int y = 0;
-				//while col is less than maxScreenCol and row is less than maxScreenRow
-				while(col<gp.maxScreenCol && row<gp.maxScreenRow) {
+				//Declare int,worldcol,worldrow with 0
+				int worldCol = 0;
+				int worldRow = 0;
+				//while worldcol is less than maxworldCol and worldrow is less than maxWorldRow
+				while(worldCol<gp.maxWorldCol && worldRow<gp.maxWorldRow) {
 					//extract a tile number
-					int tileNum = mapTileNum[col][row];
-					//draw the images
-					g2.drawImage(tile[tileNum].image,x,y,null);
-					//draw the next col by incrementing
-					col++;
-					x+=gp.tileSize;
-					//if col == gp.maxScreenCol
-					if(col==gp.maxScreenCol) {
-						//resets col and x while increasing row and y position
-						col=0;
-						x=0;
-						row++;
-						y+=gp.tileSize;
+					int tileNum = mapTileNum[worldCol][worldRow];
+					//int worldX equals
+					int worldX=worldCol*gp.tileSize;
+					//int worldY equals
+					int worldY = worldRow*gp.tileSize;
+					//int screenX equals
+					int screenX = worldX - gp.player.worldX+gp.player.screenX;
+					//int screenY equals
+					int screenY = worldY - gp.player.worldY+gp.player.screenY;
+					//this if statement creates boundary to draw tiles
+					if(worldX+gp.tileSize> gp.player.worldX-gp.player.screenX&&
+					   worldX-gp.tileSize<gp.player.worldX+gp.player.screenX&&
+					   worldY+gp.tileSize>gp.player.worldY-gp.player.screenY&&
+					   worldY-gp.tileSize<gp.player.worldY+gp.player.screenY) {
+						//draw the images
+					   g2.drawImage(tile[tileNum].image,screenX,screenY,null);
+					}
+					//draw the next worldcol by incrementing
+					worldCol++;
+					//if col == gp.maxWorldCol
+					if(worldCol==gp.maxWorldCol) {
+						//worldcol equal to zero and worldrow is incremented
+						worldCol=0;
+						worldRow++;
+					
 					}//end if
 				}//end while loop
 			}//end draw
