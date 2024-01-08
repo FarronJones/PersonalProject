@@ -68,6 +68,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
+		//aSetter to set Monster
+		aSetter.setMonster();
 	}//end startGameThread
 	@Override
 	public void run() {
@@ -81,7 +83,6 @@ public class GamePanel extends JPanel implements Runnable {
 		while(gameThread!=null) {
 			//Update: update information such as character positions
 			update();
-			
 			//Draw: draw the screen with updated information
 			repaint();
 			
@@ -110,8 +111,6 @@ public class GamePanel extends JPanel implements Runnable {
 	}//end run method
 	//update
 	public void update() {
-		//aSetter to set Monster
-		aSetter.setMonster();
 		//calls player update method
 		player.update();
 		//for loop to go through monster.length
