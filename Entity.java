@@ -119,5 +119,25 @@ public class Entity {
 			public void update() {
 				//setAction method is called
 				setAction();
+				//In every frame the update method gets called, increases the counter by 1
+				//increment the spriteCounter 
+				spriteCounter++;
+				//if it reaches 12 it changes the sprite, since the update method is 60 times per
+				//second then the image changes every 12 frames.
+				//if spriteCounter greater than 12
+				if(spriteCounter>12) {
+					//if spriteNum equal to 1
+					if(spriteNum==1) {
+						//then spriteNum is 2
+						spriteNum=2;
+					}//end if
+					//else if spriteNum equal to 2
+					else if(spriteNum==2) {
+						//then spriteNum is equal to 1
+						spriteNum=1;
+					}//end else if
+					//the spriteCounter is reset
+					spriteCounter=0;
+				}//end if
 				}//end update
 }//end class
