@@ -117,8 +117,24 @@ public class Entity {
 			public void setAction() {}
 			//public void update
 			public void update() {
+				//Boolean collisionOn is false
+				boolean collisionOn=false;
 				//setAction method is called
 				setAction();
+				//if collision on is false
+				if(collisionOn == false) {
+					//switch base off of direction
+					switch(direction) {
+					case "up":worldY -=speed;
+					break;
+					case "down":worldY +=speed;
+					break;
+					case "left":worldX-=speed;
+					break;
+					case "right":worldX +=speed;
+					break;
+					}//end switch
+				}//end if
 				//In every frame the update method gets called, increases the counter by 1
 				//increment the spriteCounter 
 				spriteCounter++;
