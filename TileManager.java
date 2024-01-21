@@ -118,7 +118,7 @@ public class TileManager {
 					   worldY+gp.tileSize>gp.player.worldY-gp.player.screenY&&
 					   worldY-gp.tileSize<gp.player.worldY+gp.player.screenY) {
 						//draw the images
-					   g2.drawImage(tile[tileNum].image,screenX,screenY,null);
+					   g2.drawImage(tile[tileNum].image,screenX,screenY,gp.tileSize,gp.tileSize,null);
 					}
 					//draw the next worldcol by incrementing
 					worldCol++;
