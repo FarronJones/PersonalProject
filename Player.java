@@ -41,8 +41,8 @@ public class Player extends Entity {
 	//public void setDefaulValues
 	public void setDefaultValues() {
 		//repeating code from GamePanel class
-		worldX=100;
-		worldY=100;
+		worldX=gp.tileSize*7;
+		worldY=gp.tileSize*6;
 		speed=4;
 		//default direction
 		direction = "down";
