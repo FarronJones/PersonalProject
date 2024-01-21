@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import Main.GamePanel;
 import Main.UtilityTool;
-
 //public class Entity
 //Stores variables that will be used in player,monster and NPC classes.
 public class Entity {
@@ -25,6 +24,8 @@ public class Entity {
 	public int spriteCounter = 0;
 	//Declare int spriteNum as 1
 	public int spriteNum = 1;
+	//public Boolean collisionOn is false
+	public boolean collisionOn=false;
 	//public int actionLockCounter equal to zero
 	public int actionLockCounter=0;
 	//Character Status
@@ -117,10 +118,10 @@ public class Entity {
 			public void setAction() {}
 			//public void update
 			public void update() {
-				//Boolean collisionOn is false
-				boolean collisionOn=false;
 				//setAction method is called
 				setAction();
+				//collisionOn equal false
+				collisionOn=false;
 				//if collision on is false
 				if(collisionOn == false) {
 					//switch base off of direction
