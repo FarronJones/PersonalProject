@@ -27,8 +27,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
 	
 	//World settings
-	public final int maxWorldCol = 50;
-	public final int maxWorldRow = 50;
+	public final int maxWorldCol = 16;
+	public final int maxWorldRow = 12;
 	public final int worldWidth = tileSize*maxWorldCol;
 	public final int worldHeight = tileSize*maxWorldRow;
 	
@@ -130,17 +130,4 @@ public class GamePanel extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D)g;
 		//call draw method for the tiles
 		tileM.draw(g2);
-		//Monster
-		for(int i=0; i<monster.length;i++) {
-			  if(monster[i]!=null) {
-				monster[i].draw(g2);
-			}//end if
-		}//end for loop
-		//call player draw method
-		player.draw(g2);
-		//UI call drawPlayerLife
-		ui.drawPlayerLife(g2);
-		//good practice to save memory
-		g2.dispose();
-	}//end paintComponent method
-}//end class
+		
