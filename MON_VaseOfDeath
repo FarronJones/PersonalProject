@@ -1,0 +1,75 @@
+//Package
+package monster;
+//imports
+import Main.GamePanel;
+import entity.Entity;
+import java.util.Random;
+//public class MON_VaseOfDeath
+public class MON_VaseOfDeath extends Entity {
+	    //GamePanel gp
+		GamePanel gp;
+		//public MON_VaseOfDeath constructor
+		public MON_VaseOfDeath(GamePanel gp) {
+			//super(gp)
+			super(gp);
+			direction="down";
+			speed=1;
+			//call getMonsterImage method
+			getMonsterImage();
+			//call setDefaultValues method
+			setDefaultValues();
+		}//end public MON_VaseOfDeath constructor
+		//public void setDefaulValues
+			public void setDefaultValues() {
+				//repeating code from GamePanel class
+				worldX=100;
+				worldY=100;
+				speed=2;
+				//default direction
+				direction = "down";
+				//Monster Status
+				maxLife = 4;
+				life = maxLife;
+			}//end void
+			//public void getMonsterImage
+			public void getMonsterImage() {
+				//setup the monster images
+				up1=setup("/monster/Vaseofdeath");
+				up2=setup("/monster/Vaseofdeath");
+				down1=setup("/monster/Vaseofdeath");
+				down2=setup("/monster/Vaseofdeath");
+				left1=setup("/monster/Vaseofdeath");
+				left2=setup("/monster/Vaseofdeath");
+				right1=setup("/monster/Vaseofdeath");
+				right2=setup("/monster/Vaseofdeath");
+			}//end getMonsterImage
+			//public void setAction
+			public void setAction() {
+				//actionLockCounter increment
+				actionLockCounter++;
+				//if actionLockCounter equals to 20
+				if(actionLockCounter==20) {
+					//Picks up number from 1 to 100
+					Random random = new Random();
+					int i = random.nextInt(100)+1;
+					//if
+					if(i<=25) {
+						direction="up";
+					}//if ended
+					//if
+					if(i>25&&i<=50) {
+						direction="down";
+					}//if ended
+					//if
+					if(i>50&&i<=100) {
+						direction="left";
+					}//if ended
+					//if
+					if(i>75&&i<=100) {
+						direction="right";
+					}//if ended
+					//actionLockCounter =0
+					actionLockCounter=0;
+				}//end if
+			}//end setAction method
+}//end public class MON_VaseOfDeath
