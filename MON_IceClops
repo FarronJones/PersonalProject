@@ -17,7 +17,7 @@ public class MON_IceClops extends Entity {
 		//call getMonsterImage method
 		getMonsterImage();
 		//call setDefaultValues method
-		//setDefaultValues();
+		setDefaultValues();
 		
 		
 	}//end public MON_IceClops constructor
@@ -49,8 +49,8 @@ public class MON_IceClops extends Entity {
 		public void setAction() {
 			//actionLockCounter increment
 			actionLockCounter++;
-			//if actionLockCounter equals to 120
-			if(actionLockCounter==120) {
+			//if actionLockCounter equals to 20
+			if(actionLockCounter==20) {
 				//Picks up number from 1 to 100
 				Random random = new Random();
 				int i = random.nextInt(100)+1;
@@ -70,8 +70,8 @@ public class MON_IceClops extends Entity {
 				if(i>75&&i<=100) {
 					direction="right";
 				}//if ended
+				//actionLockCounter =0
+				actionLockCounter=0;
 			}//end if
-			//actionLockCounter =0
-			actionLockCounter=0;
 		}//end setAction method
 }//end public class MON_IceClops
