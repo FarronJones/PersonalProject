@@ -2,7 +2,7 @@
 package Main;
 //imports
 import monster.MON_IceClops;
-
+import monster.MON_VaseOfDeath;
 //public class AssetSetter
 public class AssetSetter{
 	//GamePanel gp
@@ -17,5 +17,9 @@ public class AssetSetter{
 	gp.monster[0]= new MON_IceClops(gp);
 	gp.monster[0].worldX=gp.tileSize*7;
 	gp.monster[0].worldY=gp.tileSize*6;
+	
+	gp.monster[1]=new MON_VaseOfDeath(gp);
+	gp.monster[1].worldX=gp.tileSize*3;
+	gp.monster[1].worldY=gp.tileSize*4;
 	}//end public void setMonster method
 }//end public class AssetSetter
