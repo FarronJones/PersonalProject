@@ -36,7 +36,7 @@ public class TileManager {
 			//setup the tile images
 			setup(0,"Desert",false);
 			setup(1,"Tundra",false);
-	
+			setup(2,"Brick",false);
 	}//end method
 	//public void setup method
 	public void setup(int index, String imageName, boolean collision) {
@@ -108,12 +108,14 @@ public class TileManager {
 					int worldX=worldCol*gp.tileSize;
 					//int worldY equals
 					int worldY = worldRow*gp.tileSize;
+					//+gp.tileSize
+					//-gp.tileSize
 					//int screenX equals
 					int screenX = worldX - gp.player.worldX+gp.player.screenX;
 					//int screenY equals
 					int screenY = worldY - gp.player.worldY+gp.player.screenY;
 					//this if statement creates boundary to draw tiles
-					if(worldX+gp.tileSize> gp.player.worldX-gp.player.screenX&&
+					if(worldX+gp.tileSize>gp.player.worldX-gp.player.screenX&&
 					   worldX-gp.tileSize<gp.player.worldX+gp.player.screenX&&
 					   worldY+gp.tileSize>gp.player.worldY-gp.player.screenY&&
 					   worldY-gp.tileSize<gp.player.worldY+gp.player.screenY) {
