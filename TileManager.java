@@ -15,9 +15,9 @@ public class TileManager {
 	//Make use of the GamePanel
 	GamePanel gp;
 	//Make tiles as array
-	Tile[] tile;
+	public Tile[] tile;
 	//int mapTileNum as an array
-	int mapTileNum[][];
+	public int mapTileNum[][];
 	//TileManager constructor
 	public TileManager(GamePanel gp) {
 		//this.gp=gp
@@ -36,7 +36,7 @@ public class TileManager {
 			//setup the tile images
 			setup(0,"Desert",false);
 			setup(1,"Tundra",false);
-			setup(2,"Brick",false);
+			setup(2,"Brick",true);
 	}//end method
 	//public void setup method
 	public void setup(int index, String imageName, boolean collision) {
