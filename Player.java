@@ -79,28 +79,38 @@ public class Player extends Entity {
 			//updates player coordinates
 			if(keyH.upPressed==true) {
 				direction = "up";
-				worldY-=speed;
-				
 			}//end if
 			else if(keyH.downPressed==true) {
 				direction = "down";
-				worldY+=speed;
-				
 			}//end if
 			else if(keyH.leftPressed==true) {
 				direction = "left";
-				worldX-=speed;
-				
 			}//end if
 			else if(keyH.rightPressed==true) {
 				direction = "right";
-				worldX+=speed;
-				
 			}//end if
 			//CollisionOn equals false
 			collisionOn=false;
 			//gp.cChecker.checkTile this
 			gp.cChecker.checkTile(this);
+			
+			//If collision is false, player can move
+			if(collisionOn==false) {
+				switch(direction) {
+				case "up":
+					worldY-=speed;
+					break;
+				case "down":
+					worldY+=speed;
+					break;
+				case "left":
+					worldX-=speed;
+					break;
+				case "right":
+					worldX+=speed;
+					break;
+				}//end switch
+			}//end if
 			//In every frame the update method gets called, increases the counter by 1
 			//increment the spriteCounter 
 			spriteCounter++;
