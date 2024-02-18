@@ -1,6 +1,7 @@
 //package
 package entity;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 //imports
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -31,6 +32,9 @@ public class Entity {
 	//Character Status
 	public int maxLife;
 	public int life;
+	//public Rectangle solidArea
+	public Rectangle solidArea;
+
 	//public Entity 
 	public Entity(GamePanel gp) {
 		//this.gp=gp
