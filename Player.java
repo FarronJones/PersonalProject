@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -33,6 +34,13 @@ public class Player extends Entity {
 		screenY=gp.screenHeight/2-(gp.tileSize/2);
 		//this==this
 		this.keyH=keyH;
+		//instantiate Rectangle class
+		solidArea = new Rectangle();
+		//Set up solidArea 
+		solidArea.x=8;
+		solidArea.y=66;
+		solidArea.width=32;
+		solidArea.height=32;
 		//call setDefaultValues method
 		setDefaultValues();
 		//call getPlayerImage method
@@ -89,6 +97,10 @@ public class Player extends Entity {
 				worldX+=speed;
 				
 			}//end if
+			//CollisionOn equals false
+			collisionOn=false;
+			//gp.cChecker.checkTile this
+			gp.cChecker.checkTile(this);
 			//In every frame the update method gets called, increases the counter by 1
 			//increment the spriteCounter 
 			spriteCounter++;
