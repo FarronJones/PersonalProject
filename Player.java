@@ -39,6 +39,8 @@ public class Player extends Entity {
 		//Set up solidArea 
 		solidArea.x=8;
 		solidArea.y=66;
+		solidAreaDefaultX= solidArea.x;
+		solidAreaDefaultY= solidArea.y;
 		solidArea.width=32;
 		solidArea.height=32;
 		//call setDefaultValues method
@@ -94,6 +96,9 @@ public class Player extends Entity {
 			//gp.cChecker.checkTile this
 			gp.cChecker.checkTile(this);
 			
+			//check monster collision
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			interactMonster(monsterIndex);
 			//If collision is false, player can move
 			if(collisionOn==false) {
 				switch(direction) {
@@ -184,4 +189,11 @@ public class Player extends Entity {
 		//g2.drawImage to draw the image
 		g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
 	}//end draw method
+	//public void interactMonster
+	public void interactMonster(int i) {
+		//if i is not equal to 999
+		if(i!=999) {
+			System.out.println("You are hitting an monster!");
+		}//end if
+	}//end interactMonster
 }//end public class
