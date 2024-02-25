@@ -34,6 +34,8 @@ public class Entity {
 	public int life;
 	//public Rectangle solidArea
 	public Rectangle solidArea;
+	//public int solidAreaDefaultX and solidAreaDefaultY
+	public int solidAreaDefaultX, solidAreaDefaultY;
 
 	//public Entity 
 	public Entity(GamePanel gp) {
