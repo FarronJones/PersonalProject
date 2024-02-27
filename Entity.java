@@ -128,6 +128,8 @@ public class Entity {
 				setAction();
 				//collisionOn equal false
 				collisionOn=false;
+				gp.cChecker.checkTile(this);
+				gp.cChecker.checkPlayer(this);
 				//if collision on is false
 				if(collisionOn == false) {
 					//switch base off of direction
