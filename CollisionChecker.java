@@ -162,12 +162,12 @@ public class CollisionChecker {
 							
 					}///end if
 					break;
-					
 				}//end switch
-			}//end if
 	entity.solidArea.x=entity.solidAreaDefaultX;
 	entity.solidArea.y=entity.solidAreaDefaultY;
 	gp.player.solidArea.x=gp.player.solidAreaDefaultX;
 	gp.player.solidArea.y=gp.player.solidAreaDefaultY;
-}//end checkPlayer method
-}//end CollisionChecker
+	
+}//end checkPlayermethod
+}//end CollisionChecker class
+
