@@ -114,15 +114,16 @@ public class CollisionChecker {
 					if(entity.solidArea.intersects(target[i].solidArea)) {
 							entity.collisionOn=true;
 							index=i;
-					}///end if
-					break;
+				    break;
 				}//end switch
 			}//end if
 			entity.solidArea.x=entity.solidAreaDefaultX;
 			entity.solidArea.y=entity.solidAreaDefaultY;
 			target[i].solidArea.x=target[i].solidAreaDefaultX;
 			target[i].solidArea.y=target[i].solidAreaDefaultY;
+		}//end if
 		}//end for loop
+		//return index
 		return index;
 	}//end checkEntity method
 	//public void checkPlayer
@@ -167,7 +168,8 @@ public class CollisionChecker {
 	entity.solidArea.y=entity.solidAreaDefaultY;
 	gp.player.solidArea.x=gp.player.solidAreaDefaultX;
 	gp.player.solidArea.y=gp.player.solidAreaDefaultY;
-	
 }//end checkPlayermethod
 }//end CollisionChecker class
+
+
 
