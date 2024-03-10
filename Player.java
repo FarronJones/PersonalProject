@@ -99,6 +99,9 @@ public class Player extends Entity {
 			//check monster collision
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			interactMonster(monsterIndex);
+			
+			//contact monster called
+			contactMonster(monsterIndex);
 			//If collision is false, player can move
 			if(collisionOn==false) {
 				switch(direction) {
@@ -138,6 +141,14 @@ public class Player extends Entity {
 			}//end if
 			}//end if
 		}//end update method
+	//public void contactMonster int i
+	public void contactMonster(int i) {
+		//if i is not equal 999
+		if(i!=999) {
+			//decrease life
+			life-=1;
+		}//end if
+	}//end method
 	//public void draw
 	public void draw(Graphics2D g2) {
 		//BufferedImage is null
