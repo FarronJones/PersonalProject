@@ -140,13 +140,29 @@ public class Player extends Entity {
 				spriteCounter=0;
 			}//end if
 			}//end if
+			//This needs to be outside of key if statement!
+			//if invincible==true
+			if(invincible==true) {
+				//invinciblecounter is being incremented
+				invinciblecounter++;
+				//if invinciblecounter is greater than 60
+				if(invinciblecounter>60) {
+					//invincible equals false
+					invincible=false;
+					//invinciblecounter equals to zero
+					invinciblecounter=0;
+				}//end if
+			}//end if
 		}//end update method
 	//public void contactMonster int i
 	public void contactMonster(int i) {
 		//if i is not equal 999
 		if(i!=999) {
+			if(invincible==false) {
 			//decrease life
 			life-=1;
+			invincible=true;
+			}//end if
 		}//end if
 	}//end method
 	//public void draw
