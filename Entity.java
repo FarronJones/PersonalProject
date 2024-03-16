@@ -29,6 +29,10 @@ public class Entity {
 	public boolean collisionOn=false;
 	//public int actionLockCounter equal to zero
 	public int actionLockCounter=0;
+	//Public boolean invincible equals false
+	public boolean invincible=false;
+	//Public int invinciblecounter equals zero
+	public int invinciblecounter=0;
 	//Character Status
 	public int maxLife;
 	public int life;
@@ -129,7 +133,7 @@ public class Entity {
 				//collisionOn equal false
 				collisionOn=false;
 				gp.cChecker.checkTile(this);
-				gp.cChecker.checkPlayer(this);
+				gp.cChecker.checkPlayer(this);	
 				//if collision on is false
 				if(collisionOn == false) {
 					//switch base off of direction
