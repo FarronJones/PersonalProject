@@ -126,8 +126,10 @@ public class CollisionChecker {
 		//return index
 		return index;
 	}//end checkEntity method
-	//public void checkPlayer
-	public void checkPlayer(Entity entity) {
+	//public boolean checkPlayer
+	public boolean checkPlayer(Entity entity) {
+				//boolean contact player equals false
+				boolean contactPlayer=false;
 				//Get entity's solid area position
 				entity.solidArea.x=entity.worldX+entity.solidArea.x;
 				entity.solidArea.y=entity.worldY+entity.solidArea.y;
@@ -138,38 +140,24 @@ public class CollisionChecker {
 				
 				//switch 
 				switch(entity.direction) { 
-				case "up":
-					entity.solidArea.y-=entity.speed;
-					if(entity.solidArea.intersects(gp.player.solidArea)) {
-							entity.collisionOn=true;
-					}///end if
-					break;
-				case "down":
-					entity.solidArea.y+=entity.speed;
-					if(entity.solidArea.intersects(gp.player.solidArea)) {
-						entity.collisionOn=true;
-					}///end if
-					break;
-				case "left":
-					entity.solidArea.x-=entity.speed;
-					if(entity.solidArea.intersects(gp.player.solidArea)) {
-							entity.collisionOn=true;
-					}///end if
-					break;
-				case "right":
-					entity.solidArea.x+=entity.speed;
-					if(entity.solidArea.intersects(gp.player.solidArea)) {
-							entity.collisionOn=true;
-							
-					}///end if
-					break;
+				case "up":entity.solidArea.y-=entity.speed;break;
+				case "down":entity.solidArea.y+=entity.speed;break;
+				case "left":entity.solidArea.x-=entity.speed;break;
+				case "right":entity.solidArea.x+=entity.speed;break;
 				}//end switch
+					//when this entity intersects player
+					if(entity.solidArea.intersects(gp.player.solidArea)) {
+						//entity.CollisionOn equals true
+						entity.collisionOn=true;
+						//contact player equals true
+						contactPlayer=true;
+				}///end if
 	entity.solidArea.x=entity.solidAreaDefaultX;
 	entity.solidArea.y=entity.solidAreaDefaultY;
 	gp.player.solidArea.x=gp.player.solidAreaDefaultX;
 	gp.player.solidArea.y=gp.player.solidAreaDefaultY;
+	
+	//return contactPlayer
+	return contactPlayer;
 }//end checkPlayermethod
 }//end CollisionChecker class
-
-
-
