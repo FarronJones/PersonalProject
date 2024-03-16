@@ -12,6 +12,8 @@ public class MON_VaseOfDeath extends Entity {
 		public MON_VaseOfDeath(GamePanel gp) {
 			//super(gp)
 			super(gp);
+			//type 1
+			type=1;
 			direction="down";
 			speed=1;
 			//call getMonsterImage method
