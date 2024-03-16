@@ -27,6 +27,8 @@ public class Entity {
 	public int spriteNum = 1;
 	//public Boolean collisionOn is false
 	public boolean collisionOn=false;
+	//public int type
+	public int type;//1==monster
 	//public int actionLockCounter equal to zero
 	public int actionLockCounter=0;
 	//Public boolean invincible equals false
@@ -133,7 +135,15 @@ public class Entity {
 				//collisionOn equal false
 				collisionOn=false;
 				gp.cChecker.checkTile(this);
-				gp.cChecker.checkPlayer(this);	
+				boolean contactPlayer=gp.cChecker.checkPlayer(this);
+				//if the monster and contactPlayer is true
+				if(this.type==1&&contactPlayer==true) {
+					if(gp.player.invincible==false) {
+						//we can give damage
+						gp.player.life-=1;
+						gp.player.invincible=true;
+					}
+				}//end if
 				//if collision on is false
 				if(collisionOn == false) {
 					//switch base off of direction
