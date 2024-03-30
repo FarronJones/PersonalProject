@@ -36,14 +36,14 @@ public class MON_VaseOfDeath extends Entity {
 			//public void getMonsterImage
 			public void getMonsterImage() {
 				//setup the monster images
-				up1=setup("/monster/Vaseofdeath");
-				up2=setup("/monster/Vaseofdeath");
-				down1=setup("/monster/Vaseofdeath");
-				down2=setup("/monster/Vaseofdeath");
-				left1=setup("/monster/Vaseofdeath");
-				left2=setup("/monster/Vaseofdeath");
-				right1=setup("/monster/Vaseofdeath");
-				right2=setup("/monster/Vaseofdeath");
+				up1=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				up2=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				down1=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				down2=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				left1=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				left2=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				right1=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
+				right2=setup("/monster/Vaseofdeath",gp.tileSize,gp.tileSize);
 			}//end getMonsterImage
 			//public void setAction
 			public void setAction() {
