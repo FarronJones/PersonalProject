@@ -37,14 +37,14 @@ public class MON_IceClops extends Entity {
 		//public void getMonsterImage
 		public void getMonsterImage() {
 			//setup the monster images
-			up1=setup("/monster/Iceclops");
-			up2=setup("/monster/Iceclops");
-			down1=setup("/monster/Iceclops");
-			down2=setup("/monster/Iceclops");
-			left1=setup("/monster/Iceclops");
-			left2=setup("/monster/Iceclops");
-			right1=setup("/monster/Iceclops");
-			right2=setup("/monster/IceClops");
+			up1=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			up2=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			down1=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			down2=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			left1=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			left2=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			right1=setup("/monster/Iceclops",gp.tileSize,gp.tileSize);
+			right2=setup("/monster/IceClops",gp.tileSize,gp.tileSize);
 		}//end getMonsterImage
 		//public void setAction
 		public void setAction() {
