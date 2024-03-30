@@ -19,6 +19,8 @@ public class Entity {
 	public int speed;
 	//To store image file
 	public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+	public BufferedImage attackUp1,attackUp2,attackDown1,attackDown2,attackLeft1,attackLeft2,
+	attackRight1,attackRight2;
 	//Declare String direction
 	public String direction;
 	//Declare int spriteCounter as 0
@@ -49,7 +51,7 @@ public class Entity {
 		this.gp=gp;
 	}//end public entity
 	//BufferedImage setup method
-			public BufferedImage setup(String imagePath) {
+			public BufferedImage setup(String imagePath,int width, int height) {
 				//instantiate utilityTool
 				UtilityTool uTool = new UtilityTool();
 				//image is equal to null
@@ -58,7 +60,7 @@ public class Entity {
 						try {
 							//scale the player images
 							image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
-							image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+							image = uTool.scaleImage(image, width,height);
 						}//end try
 						//catch
 						catch(IOException e) {
