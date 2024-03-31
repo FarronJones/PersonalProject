@@ -87,8 +87,13 @@ public class Player extends Entity {
 	}//end getPlayerAttackImage
 	//public void update
 	public void update() {
-		//if any of the keypressed is equal to true, the the spriteCounter increase
-		if(keyH.upPressed==true || keyH.downPressed == true || 
+		//if attacking equals true
+		if(attacking==true) {
+			//call attacking method
+			attacking();
+		}//end if
+		// else if any of the keypressed is equal to true, the the spriteCounter increase
+		else if(keyH.upPressed==true || keyH.downPressed == true || 
 				keyH.leftPressed==true || keyH.rightPressed==true) {
 			//change player position
 			//updates player coordinates
@@ -231,9 +236,19 @@ public class Player extends Entity {
 	}//end draw method
 	//public void interactMonster
 	public void interactMonster(int i) {
+		//if gp.keyH.enterPressed==true
+		if(gp.keyH.enterPressed==true) {
 		//if i is not equal to 999
 		if(i!=999) {
 			System.out.println("You are hitting an monster!");
 		}//end if
+		else {
+			//if gp.keyH.enterPressed==true
+			if(gp.keyH.enterPressed==true) {
+				//attacking equals false
+				attacking=false;
+			}//end if KeyH.enterPressed
+		}//end else
+		}//end if KeyH.enter pressed
 	}//end interactMonster
 }//end public class
