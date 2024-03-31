@@ -9,7 +9,7 @@ public class KeyHandler implements KeyListener {
 	//GamePanel gp
 	GamePanel gp;
 	//declare booleans to use for keyPressed and keyReleased
-	public boolean upPressed, downPressed, leftPressed, rightPressed;
+	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 	//Public KeyHandler constructor
 	public KeyHandler(GamePanel gp) {
 		this.gp=gp;
@@ -41,7 +41,11 @@ public class KeyHandler implements KeyListener {
 		if(code == KeyEvent.VK_D) {
 			rightPressed = true;
 		}//end if
-		
+		//if user press Enter key
+		if(code==KeyEvent.VK_ENTER) {
+			//enterPressed is equal to true
+			enterPressed=true;
+		}//end if
 	}//end keyPressed method
 	//keyReleased method
 	@Override
