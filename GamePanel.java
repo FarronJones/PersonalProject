@@ -33,13 +33,13 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int worldHeight = tileSize*maxWorldRow;
 	
 	//initiate keyHandler
-	KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
 	//declare Thread gameThread
 	Thread gameThread;
 	//CollisionChecker created
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	//Entity monster array
-	public Entity monster[] = new Entity[10];
+	public Entity monster[] = new Entity[10	];
 	//ArrayList created
 	ArrayList<Entity> entityList = new ArrayList<>();
 	//FPS
