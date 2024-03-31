@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 	//CollisionChecker created
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	//Entity monster array
-	public Entity monster[] = new Entity[10	];
+	public Entity monster[] = new Entity[10];
 	//ArrayList created
 	ArrayList<Entity> entityList = new ArrayList<>();
 	//FPS
