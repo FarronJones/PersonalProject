@@ -172,6 +172,30 @@ public class Player extends Entity {
 				}//end if
 			}//end if
 		}//end update method
+	//public void attacking method
+	public void attacking() {
+		//spriteCounter is being incremented
+		spriteCounter++;
+		//if spriteCounter is less than or equal to 5
+		if(spriteCounter <=5) {
+			//SpriteNum is equal to 1
+			spriteNum=1;
+		}//end if
+		//if spriteCounter is greater than 5 and spriteCounter is less than or equal to 25
+		if(spriteCounter>5 && spriteCounter<=25) {
+			//spriteNum equal 2
+			spriteNum = 2;
+		}//end if
+		//if spriteCounter greater than 25
+		if(spriteCounter>25) {
+			//spriteNum equals 1
+			spriteNum=1;
+			//spriteCounter equals to zero
+			spriteCounter=0;
+			//attacking equal false
+			attacking = false;
+		}//end if spriteCounter
+	}//end public void attacking()
 	//public void contactMonster int i
 	public void contactMonster(int i) {
 		//if i is not equal 999
@@ -191,43 +215,100 @@ public class Player extends Entity {
 		switch(direction) {
 		//each case will update the image accordingly to create a working animation
 		case "up":
-			//if spriteNum equal 1
-			if(spriteNum==1) {
-				image = up1;
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = up1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = up2;
+				}//end if
 			}//end if
-			//if spriteNum equal 2
-			if(spriteNum == 2) {
-				image = up2;
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackUp1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackUp2;
+				}//end if
 			}//end if
 			break;
 		case "down":
-			//if spriteNum equal 1
-			if(spriteNum==1) {
-				image = down1;
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = down1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = down2;
+				}//end if
 			}//end if
-			//if spriteNum equal 2
-			if(spriteNum == 2) {
-				image = down2;
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackDown1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackDown2;
+				}//end if
 			}//end if
+			
 			break;
 		case "left":
-			//if spriteNum equal to 1
-			if(spriteNum==1) {
-				image = left1;
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = left1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = left2;
+				}//end if
 			}//end if
-			//if spriteNum equal to 2
-	        if(spriteNum==2) {
-	        	image = left2;
-	        }//end if
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackLeft1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackLeft2;
+				}//end if
+			}//end if
 			break;
 		case "right":
-			//if spriteNum equal to 1
-			if(spriteNum==1) {
-				image = right1;
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = right1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = right2;
+				}//end if
 			}//end if
-			//if spriteNum equal to 2
-			if(spriteNum==2) {
-				image = right2;
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackRight1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackRight2;
+				}//end if
 			}//end if
 			break;
 		}
