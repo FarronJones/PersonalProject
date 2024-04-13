@@ -319,17 +319,8 @@ public class Player extends Entity {
 	public void interactMonster(int i) {
 		//if gp.keyH.enterPressed==true
 		if(gp.keyH.enterPressed==true) {
-		//if i is not equal to 999
-		if(i!=999) {
-			System.out.println("You are hitting an monster!");
-		}//end if
-		else {
-			//if gp.keyH.enterPressed==true
-			if(gp.keyH.enterPressed==true) {
 				//attacking equals true
 				attacking=true;
-			}//end if KeyH.enterPressed
-		}//end else
 		}//end if KeyH.enter pressed
 	}//end interactMonster
 }//end public class
