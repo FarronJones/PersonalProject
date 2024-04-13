@@ -326,8 +326,8 @@ public class Player extends Entity {
 		else {
 			//if gp.keyH.enterPressed==true
 			if(gp.keyH.enterPressed==true) {
-				//attacking equals false
-				attacking=false;
+				//attacking equals true
+				attacking=true;
 			}//end if KeyH.enterPressed
 		}//end else
 		}//end if KeyH.enter pressed
