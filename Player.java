@@ -120,8 +120,8 @@ public class Player extends Entity {
 			
 			//contact monster called
 			contactMonster(monsterIndex);
-			//If collision is false, player can move
-			if(collisionOn==false) {
+			//If collision is false, player can move and keyH.enterPressed equals false
+			if(collisionOn==false&&keyH.enterPressed==false) {
 				switch(direction) {
 				case "up":
 					worldY-=speed;
@@ -137,6 +137,8 @@ public class Player extends Entity {
 					break;
 				}//end switch
 			}//end if
+			//gp.keyH.enterPressed equals false
+			gp.keyH.enterPressed=false;
 			//In every frame the update method gets called, increases the counter by 1
 			//increment the spriteCounter 
 			spriteCounter++;
@@ -261,7 +263,6 @@ public class Player extends Entity {
 					image = attackDown2;
 				}//end if
 			}//end if
-			
 			break;
 		case "left":
 			//if attacking ==false
