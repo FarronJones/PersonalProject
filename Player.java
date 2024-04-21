@@ -43,6 +43,10 @@ public class Player extends Entity {
 		solidAreaDefaultY= solidArea.y;
 		solidArea.width=32;
 		solidArea.height=32;
+		
+		//attackArea width and height equals 36
+		attackArea.width=36;
+		attackArea.height=36;
 		//call setDefaultValues method
 		setDefaultValues();
 		//call getPlayerImage method
@@ -187,6 +191,42 @@ public class Player extends Entity {
 		if(spriteCounter>5 && spriteCounter<=25) {
 			//spriteNum equal 2
 			spriteNum = 2;
+			
+			//Saves the current worldX,WorldY and solidArea
+			//int currentWorldX equals worldX
+			int currentWorldX=worldX;
+			//int currentWorldY equals worldY
+			int currentWorldY=worldY;
+			//int solidAreaWidth equals solidArea.width
+			int solidAreaWidth=solidArea.width;
+			//int solidAreaHeight equals solidArea.height
+			int solidAreaHeight = solidArea.height;
+			
+			//Adjust player's worldX/Y for the attackArea
+			//switch(direction)
+			switch(direction) {
+			//case up,down,left and right
+			case "up": worldY -= attackArea.height; break;
+			case "down": worldY+=attackArea.height; break;
+			case "left": worldX-=attackArea.width;  break;
+			case "right": worldX+=attackArea.width; break;
+			}//end switch
+			//attackArea becomes solidArea
+			//SolidArea.width = attackArea.width;
+			solidArea.width = attackArea.width;
+			//solidArea.height= attackArea.height;
+			solidArea.height=attackArea.height;
+			
+			//Check monster collision with the updated worldX,WorldY and solidArea
+			//int monsterIndex equals gp.cChecker.checkEntity(this, gp.monster)
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			//call damageMonster method
+			damageMonster(monsterIndex);
+			//After checking Collision, resort the original data
+			worldX=currentWorldX;
+			worldY=currentWorldY;
+			solidArea.width=solidAreaWidth;
+			solidArea.height=solidAreaWidth;
 		}//end if
 		//if spriteCounter greater than 25
 		if(spriteCounter>25) {
