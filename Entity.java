@@ -44,6 +44,8 @@ public class Entity {
 	public int life;
 	//public Rectangle solidArea
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
+	//public Rectangle attackArea
+	public Rectangle attackArea = new Rectangle(0,0,48,48);
 	//public int solidAreaDefaultX and solidAreaDefaultY
 	public int solidAreaDefaultX, solidAreaDefaultY;
 
