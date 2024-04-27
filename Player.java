@@ -226,7 +226,7 @@ public class Player extends Entity {
 			worldX=currentWorldX;
 			worldY=currentWorldY;
 			solidArea.width=solidAreaWidth;
-			solidArea.height=solidAreaWidth;
+			solidArea.height=solidAreaHeight;
 		}//end if
 		//if spriteCounter greater than 25
 		if(spriteCounter>25) {
