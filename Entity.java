@@ -1,188 +1,367 @@
 //package
 package entity;
+//imports
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-//imports
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
+//Import Gamepanel and KeyHandler from main class
 import Main.GamePanel;
+import Main.KeyHandler;
 import Main.UtilityTool;
-//public class Entity
-//Stores variables that will be used in player,monster and NPC classes.
-public class Entity {
-	//GamePanel gp
-	GamePanel gp;
-	//public int x,y declared
-	public int worldX,worldY;
-	//public int speed declared
-	public int speed;
-	//boolean attacking=false;
-	boolean attacking = false;
-	//To store image file
-	public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-	public BufferedImage attackUp1,attackUp2,attackDown1,attackDown2,attackLeft1,attackLeft2,
-	attackRight1,attackRight2;
-	//Declare String direction
-	public String direction;
-	//Declare int spriteCounter as 0
-	public int spriteCounter = 0;
-	//Declare int spriteNum as 1
-	public int spriteNum = 1;
-	//public Boolean collisionOn is false
-	public boolean collisionOn=false;
-	//public int type
-	public int type;//1==monster
-	//public int actionLockCounter equal to zero
-	public int actionLockCounter=0;
-	//Public boolean invincible equals false
-	public boolean invincible=false;
-	//Public int invinciblecounter equals zero
-	public int invinciblecounter=0;
-	//Character Status
-	public int maxLife;
-	public int life;
-	//public Rectangle solidArea
-	public Rectangle solidArea = new Rectangle(0,0,48,48);
-	//public Rectangle attackArea
-	public Rectangle attackArea = new Rectangle(0,0,48,48);
-	//public int solidAreaDefaultX and solidAreaDefaultY
-	public int solidAreaDefaultX, solidAreaDefaultY;
-
-	//public Entity 
-	public Entity(GamePanel gp) {
-		//this.gp=gp
-		this.gp=gp;
-	}//end public entity
-	//BufferedImage setup method
-			public BufferedImage setup(String imagePath,int width, int height) {
-				//instantiate utilityTool
-				UtilityTool uTool = new UtilityTool();
-				//image is equal to null
-				BufferedImage image = null;
-						//try
-						try {
-							//scale the player images
-							image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
-							image = uTool.scaleImage(image, width,height);
-						}//end try
-						//catch
-						catch(IOException e) {
-							e.printStackTrace();
-						}//end catch
-						//return image
-						return image;
-			}//end BufferedImage setup method
-			//public void draw
-			public void draw(Graphics2D g2) {
-				//BufferedImage is null
-				BufferedImage image = null;
-				int screenX = worldX-gp.player.worldX+gp.player.screenX;
-				int screenY = worldY-gp.player.worldY+gp.player.screenY;
-				if(worldX+gp.tileSize>gp.player.worldX-gp.player.screenX&&
-				   worldX-gp.tileSize<gp.player.worldX+gp.player.screenX&&
-				   worldY+gp.tileSize>gp.player.worldY-gp.player.screenY&&
-				   worldY-gp.tileSize<gp.player.worldY+gp.player.screenY) {
-					//switch direction
-					switch(direction) {
-					//each case will update the image accordingly to create a working animation
-					case "up":
-						//if spriteNum equal 1
-						if(spriteNum==1) {
-							image = up1;
-						}//end if
-						//if spriteNum equal 2
-						if(spriteNum == 2) {
-							image = up2;
-						}//end if
-						break;
-					case "down":
-						//if spriteNum equal 1
-						if(spriteNum==1) {
-							image = down1;
-						}//end if
-						//if spriteNum equal 2
-						if(spriteNum == 2) {
-							image = down2;
-						}//end if
-						break;
-					case "left":
-						//if spriteNum equal to 1
-						if(spriteNum==1) {
-							image = left1;
-						}//end if
-						//if spriteNum equal to 2
-				        if(spriteNum==2) {
-				        	image = left2;
-				        }//end if
-						break;
-					case "right":
-						//if spriteNum equal to 1
-						if(spriteNum==1) {
-							image = right1;
-						}//end if
-						//if spriteNum equal to 2
-						if(spriteNum==2) {
-							image = right2;
-						}//end if
-						break;
-					}//end switch
-					//draw
-					g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
-				}//end if
-						
-			}//end draw
-			//public void setAction
-			public void setAction() {}
-			//public void update
-			public void update() {
-				//setAction method is called
-				setAction();
-				//collisionOn equal false
-				collisionOn=false;
-				gp.cChecker.checkTile(this);
-				boolean contactPlayer=gp.cChecker.checkPlayer(this);
-				//if the monster and contactPlayer is true
-				if(this.type==1&&contactPlayer==true) {
-					if(gp.player.invincible==false) {
-						//we can give damage
-						gp.player.life-=1;
-						gp.player.invincible=true;
-					}
-				}//end if
-				//if collision on is false
-				if(collisionOn == false) {
-					//switch base off of direction
-					switch(direction) {
-					case "up":worldY -=speed;
+import tile.Tile;
+//public class Player extends Entity
+public class Player extends Entity {
+	//Graphics 2D g2
+	Graphics2D g2;
+	//KeyHandler KeyH
+	KeyHandler keyH;
+	//Public final int screen X and Y
+	public final int screenX;
+	public final int screenY;
+	//Constructor
+	public Player(GamePanel gp, KeyHandler keyH) {
+		//super(gp)
+		super(gp);
+		//Screen X and Y
+		screenX=gp.screenWidth/2 -(gp.tileSize/2);
+		screenY=gp.screenHeight/2-(gp.tileSize/2);
+		//this==this
+		this.keyH=keyH;
+		//instantiate Rectangle class
+		solidArea = new Rectangle();
+		//Set up solidArea 
+		solidArea.x=8;
+		solidArea.y=66;
+		solidAreaDefaultX= solidArea.x;
+		solidAreaDefaultY= solidArea.y;
+		solidArea.width=32;
+		solidArea.height=32;
+		
+		//attackArea width and height equals 36
+		attackArea.width=36;
+		attackArea.height=36;
+		//call setDefaultValues method
+		setDefaultValues();
+		//call getPlayerImage method
+		getPlayerImage();
+		//call getPlayerAttackImage
+		getPlayerAttackImage();
+	}//end Player
+	//public void setDefaulValues
+	public void setDefaultValues() {
+		//repeating code from GamePanel class
+		worldX=gp.tileSize*7;
+		worldY=gp.tileSize*6;
+		speed=4;
+		//default direction
+		direction = "down";
+		//Player Status
+		maxLife = 6;
+		life = maxLife;
+	}//end void
+	//public void getPlayerImage
+	public void getPlayerImage() {
+		//setup the player images
+		up1=setup("/player/boy_up_1",gp.tileSize,gp.tileSize);
+		up2=setup("/player/boy_up_2",gp.tileSize,gp.tileSize);
+		down1=setup("/player/boy_down_1",gp.tileSize,gp.tileSize);
+		down2=setup("/player/boy_down_2",gp.tileSize,gp.tileSize);
+		left1=setup("/player/boy_left_1",gp.tileSize,gp.tileSize);
+		left2=setup("/player/boy_left_2",gp.tileSize,gp.tileSize);
+		right1=setup("/player/boy_right_1",gp.tileSize,gp.tileSize);
+		right2=setup("/player/boy_right_2",gp.tileSize,gp.tileSize);
+	}//end getPlayerImage
+	//public void getPlayerAttackImage
+	public void getPlayerAttackImage() {
+		attackUp1 = setup("/player/boy_attack_up_1-removebg-preview",gp.tileSize,gp.tileSize*2);
+		attackUp2 = setup("/player/boy_attack_up_2-removebg-preview",gp.tileSize,gp.tileSize*2);
+		attackDown1 = setup("/player/boy_attack_down_1-removebg-preview",gp.tileSize,gp.tileSize*2);
+		attackDown2 = setup("/player/boy_attack_down_2-removebg-preview",gp.tileSize,gp.tileSize*2);
+		attackLeft1 = setup("/player/boy_attack_left_1-removebg-preview",gp.tileSize*2,gp.tileSize);
+		attackLeft2 = setup("/player/boy_attack_left_2-removebg-preview",gp.tileSize*2,gp.tileSize);
+		attackRight1 = setup("/player/boy_attack_right_1-removebg-preview",gp.tileSize*2,gp.tileSize);
+		attackRight2 = setup("/player/boy_attack_right_2-removebg-preview",gp.tileSize*2,gp.tileSize);
+	}//end getPlayerAttackImage
+	//public void update
+	public void update() {
+		//if attacking equals true
+		if(attacking==true) {
+			//call attacking method
+			attacking();
+		}//end if
+		// else if any of the keypressed is equal to true, the the spriteCounter increase
+		else if(keyH.upPressed==true || keyH.downPressed == true || 
+				keyH.leftPressed==true || keyH.rightPressed==true) {
+			//change player position
+			//updates player coordinates
+			if(keyH.upPressed==true) {
+				direction = "up";
+			}//end if
+			else if(keyH.downPressed==true) {
+				direction = "down";
+			}//end if
+			else if(keyH.leftPressed==true) {
+				direction = "left";
+			}//end if
+			else if(keyH.rightPressed==true) {
+				direction = "right";
+			}//end if
+			//CollisionOn equals false
+			collisionOn=false;
+			//gp.cChecker.checkTile this
+			gp.cChecker.checkTile(this);
+			
+			//check monster collision
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			interactMonster(monsterIndex);
+			
+			//contact monster called
+			contactMonster(monsterIndex);
+			//If collision is false, player can move and keyH.enterPressed equals false
+			if(collisionOn==false&&keyH.enterPressed==false) {
+				switch(direction) {
+				case "up":
+					worldY-=speed;
 					break;
-					case "down":worldY +=speed;
+				case "down":
+					worldY+=speed;
 					break;
-					case "left":worldX-=speed;
+				case "left":
+					worldX-=speed;
 					break;
-					case "right":worldX +=speed;
+				case "right":
+					worldX+=speed;
 					break;
-					}//end switch
+				}//end switch
+			}//end if
+			//gp.keyH.enterPressed equals false
+			gp.keyH.enterPressed=false;
+			//In every frame the update method gets called, increases the counter by 1
+			//increment the spriteCounter 
+			spriteCounter++;
+			//if it reaches 12 it changes the sprite, since the update method is 60 times per
+			//second then the image changes every 12 frames.
+			//if spriteCounter greater than 12
+			if(spriteCounter>12) {
+				//if spriteNum equal to 1
+				if(spriteNum==1) {
+					//then spriteNum is 2
+					spriteNum=2;
 				}//end if
-				//In every frame the update method gets called, increases the counter by 1
-				//increment the spriteCounter 
-				spriteCounter++;
-				//if it reaches 12 it changes the sprite, since the update method is 60 times per
-				//second then the image changes every 12 frames.
-				//if spriteCounter greater than 12
-				if(spriteCounter>12) {
-					//if spriteNum equal to 1
-					if(spriteNum==1) {
-						//then spriteNum is 2
-						spriteNum=2;
-					}//end if
-					//else if spriteNum equal to 2
-					else if(spriteNum==2) {
-						//then spriteNum is equal to 1
-						spriteNum=1;
-					}//end else if
-					//the spriteCounter is reset
-					spriteCounter=0;
+				//else if spriteNum equal to 2
+				else if(spriteNum==2) {
+					//then spriteNum is equal to 1
+					spriteNum=1;
+				}//end else if
+				//the spriteCounter is reset
+				spriteCounter=0;
+			}//end if
+			}//end if
+			//This needs to be outside of key if statement!
+			//if invincible==true
+			if(invincible==true) {
+				//invinciblecounter is being incremented
+				invinciblecounter++;
+				//if invinciblecounter is greater than 60
+				if(invinciblecounter>60) {
+					//invincible equals false
+					invincible=false;
+					//invinciblecounter equals to zero
+					invinciblecounter=0;
 				}//end if
-				}//end update
-}//end class
+			}//end if
+		}//end update method
+	//public void attacking method
+	public void attacking() {
+		//spriteCounter is being incremented
+		spriteCounter++;
+		//if spriteCounter is less than or equal to 5
+		if(spriteCounter <=5) {
+			//SpriteNum is equal to 1
+			spriteNum=1;
+		}//end if
+		//if spriteCounter is greater than 5 and spriteCounter is less than or equal to 25
+		if(spriteCounter>5 && spriteCounter<=25) {
+			//spriteNum equal 2
+			spriteNum = 2;
+			
+			//Saves the current worldX,WorldY and solidArea
+			//int currentWorldX equals worldX
+			int currentWorldX=worldX;
+			//int currentWorldY equals worldY
+			int currentWorldY=worldY;
+			//int solidAreaWidth equals solidArea.width
+			int solidAreaWidth=solidArea.width;
+			//int solidAreaHeight equals solidArea.height
+			int solidAreaHeight = solidArea.height;
+			
+			//Adjust player's worldX/Y for the attackArea
+			//switch(direction)
+			switch(direction) {
+			//case up,down,left and right
+			case "up": worldY -= attackArea.height; break;
+			case "down": worldY+=attackArea.height; break;
+			case "left": worldX-=attackArea.width;  break;
+			case "right": worldX+=attackArea.width; break;
+			}//end switch
+			//attackArea becomes solidArea
+			//SolidArea.width = attackArea.width;
+			solidArea.width = attackArea.width;
+			//solidArea.height= attackArea.height;
+			solidArea.height=attackArea.height;
+			
+			//Check monster collision with the updated worldX,WorldY and solidArea
+			//int monsterIndex equals gp.cChecker.checkEntity(this, gp.monster)
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			//call damageMonster method
+			damageMonster(monsterIndex);
+			//After checking Collision, resort the original data
+			worldX=currentWorldX;
+			worldY=currentWorldY;
+			solidArea.width=solidAreaWidth;
+			solidArea.height=solidAreaHeight;
+		}//end if
+		//if spriteCounter greater than 25
+		if(spriteCounter>25) {
+			//spriteNum equals 1
+			spriteNum=1;
+			//spriteCounter equals to zero
+			spriteCounter=0;
+			//attacking equal false
+			attacking = false;
+		}//end if spriteCounter
+	}//end public void attacking()
+	//public void contactMonster int i
+	public void contactMonster(int i) {
+		//if i is not equal 999
+		if(i!=999) {
+			if(invincible==false) {
+			//decrease life
+			life-=1;
+			invincible=true;
+			}//end if
+		}//end if
+	}//end method
+	//public void draw
+	public void draw(Graphics2D g2) {
+		//BufferedImage is null
+		BufferedImage image = null;
+		//switch direction
+		switch(direction) {
+		//each case will update the image accordingly to create a working animation
+		case "up":
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = up1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = up2;
+				}//end if
+			}//end if
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackUp1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackUp2;
+				}//end if
+			}//end if
+			break;
+		case "down":
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = down1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = down2;
+				}//end if
+			}//end if
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackDown1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackDown2;
+				}//end if
+			}//end if
+			break;
+		case "left":
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = left1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = left2;
+				}//end if
+			}//end if
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackLeft1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackLeft2;
+				}//end if
+			}//end if
+			break;
+		case "right":
+			//if attacking ==false
+			if(attacking == false) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = right1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = right2;
+				}//end if
+			}//end if
+			//if attacking==true
+			if(attacking==true) {
+				//if spriteNum equal 1
+				if(spriteNum==1) {
+					image = attackRight1;
+				}//end if
+				//if spriteNum equal 2
+				if(spriteNum == 2) {
+					image = attackRight2;
+				}//end if
+			}//end if
+			break;
+		}
+		//g2.drawImage to draw the image
+		g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
+	}//end draw method
+	//public void interactMonster
+	public void interactMonster(int i) {
+		//if gp.keyH.enterPressed==true
+		if(gp.keyH.enterPressed==true) {
+				//attacking equals true
+				attacking=true;
+		}//end if KeyH.enter pressed
+	}//end interactMonster
+}//end public class
