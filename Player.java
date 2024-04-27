@@ -1,5 +1,6 @@
 //package
 package entity;
+import java.awt.AlphaComposite;
 //imports
 import java.awt.Color;
 import java.awt.Font;
@@ -372,8 +373,17 @@ public class Player extends Entity {
 			}//end if
 			break;
 		}
+		//if invincible=true
+		if(invincible=true) {
+			//g2.setComposite
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4F));
+		}//end if
 		//g2.drawImage to draw the image
 		g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
+		
+		//Reset	alpha
+		//g2.setComposite
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1F));
 	}//end draw method
 	//public void interactMonster
 	public void interactMonster(int i) {
