@@ -249,6 +249,25 @@ public class Player extends Entity {
 			}//end if
 		}//end if
 	}//end method
+	//public void damageMonster
+	public void damageMonster(int i) {
+		//if i is not equal to 999
+		if(i!=999) {
+		//if gp.monster at index i invincible equals to false
+		if(gp.monster[i].invincible==false ){
+			//the monster life is subtracted
+			gp.monster[i].life-=1;
+			//the invincible equals true
+			gp.monster[i].invincible=true;
+			
+			//if gp.monster at index i.life <=0 
+			if(gp.monster[i].life<=0) {
+				//gp.monster dies which is null
+				gp.monster[i]=null;
+			}//end if
+		}//end if
+		}//end if
+	}//end public damageMonster
 	//public void draw
 	public void draw(Graphics2D g2) {
 		//BufferedImage is null
