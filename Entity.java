@@ -1,5 +1,6 @@
 //package
 package entity;
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 //imports
@@ -127,8 +128,16 @@ public class Entity {
 						}//end if
 						break;
 					}//end switch
+					//if invincible equals to true
+					if(invincible==true) {
+						//g2.setComposite for transparency
+						g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+					}//end if
 					//draw
 					g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
+					
+					//g2.setComposite for transparency reset
+					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 				}//end if
 						
 			}//end draw
@@ -183,6 +192,18 @@ public class Entity {
 					}//end else if
 					//the spriteCounter is reset
 					spriteCounter=0;
+				}//end if
+				//if invincible==true
+				if(invincible==true) {
+					//invinciblecounter is being incremented
+					invinciblecounter++;
+					//if invinciblecounter is greater than 40
+					if(invinciblecounter>40) {
+						//invincible equals false
+						invincible=false;
+						//invinciblecounter equals to zero
+						invinciblecounter=0;
+					}//end if
 				}//end if
 				}//end update
 }//end class
