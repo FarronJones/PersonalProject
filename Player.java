@@ -223,6 +223,8 @@ public class Player extends Entity {
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			//call damageMonster method
 			damageMonster(monsterIndex);
+			
+			//Maybe have a damagePlayer method that is similar to damageMonster
 			//After checking Collision, resort the original data
 			worldX=currentWorldX;
 			worldY=currentWorldY;
@@ -273,6 +275,10 @@ public class Player extends Entity {
 	public void draw(Graphics2D g2) {
 		//BufferedImage is null
 		BufferedImage image = null;
+		//int tempScreenX equals screenX
+		int tempScreenX = screenX;
+		//int tempScreenY equals screenY
+		int tempScreenY = screenY;
 		//switch direction
 		switch(direction) {
 		//each case will update the image accordingly to create a working animation
@@ -290,6 +296,8 @@ public class Player extends Entity {
 			}//end if
 			//if attacking==true
 			if(attacking==true) {
+				//tempScreenY equals screenY-gp.tileSize
+				tempScreenY=screenY-gp.tileSize;
 				//if spriteNum equal 1
 				if(spriteNum==1) {
 					image = attackUp1;
@@ -338,6 +346,8 @@ public class Player extends Entity {
 			}//end if
 			//if attacking==true
 			if(attacking==true) {
+				//tempScreenX equals screenX-gp.tileSize
+				tempScreenX=screenX-gp.tileSize;
 				//if spriteNum equal 1
 				if(spriteNum==1) {
 					image = attackLeft1;
@@ -373,17 +383,17 @@ public class Player extends Entity {
 			}//end if
 			break;
 		}
-		//if invincible=true
-		if(invincible=true) {
-			//g2.setComposite
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4F));
-		}//end if
-		//g2.drawImage to draw the image
-		g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize,null);
-		
-		//Reset	alpha
-		//g2.setComposite
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1F));
+				//if invincible=true
+				if(invincible=true) {
+					//g2.setComposite
+					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4F));
+				}//end if
+				//g2.drawImage to draw the image
+				g2.drawImage(image, tempScreenX, tempScreenY,null);
+				
+				//Reset	alpha
+				//g2.setComposite
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1F));
 	}//end draw method
 	//public void interactMonster
 	public void interactMonster(int i) {
