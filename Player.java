@@ -383,14 +383,13 @@ public class Player extends Entity {
 			}//end if
 			break;
 		}
-				//if invincible=true
-				if(invincible=true) {
+				//if invincible==true
+				if(invincible==true) {
 					//g2.setComposite
 					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.4F));
 				}//end if
 				//g2.drawImage to draw the image
 				g2.drawImage(image, tempScreenX, tempScreenY,null);
-				
 				//Reset	alpha
 				//g2.setComposite
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1F));
