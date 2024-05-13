@@ -157,7 +157,13 @@ public class Entity {
 						//we can give damage
 						gp.player.life-=1;
 						gp.player.invincible=true;
-					}
+						//if gp.player.life is less than or equal to zero
+						if(gp.player.life<=0) {
+							//gp.player is equal to null
+							gp.player=null;
+						}//end if
+					}//end if
+					
 				}//end if
 				//if collision on is false
 				if(collisionOn == false) {
